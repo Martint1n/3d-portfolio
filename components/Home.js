@@ -27,7 +27,7 @@ function Home() {
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
       >
       <Suspense fallback={<Loader />}> //loading screen while waiting for 3D model
-
+        <directionalLight position={[1, 1, 1]} intensity={2}/> 
       </Suspense>
       <Tokyo 
         scale= {screenScale}
