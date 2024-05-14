@@ -22,23 +22,29 @@ export function Millenium(props) {
   const milleniumRef = useRef()
 
   useLayoutEffect(() => {
-    milleniumRef.current = gsap.timeline();
+    tl.current = gsap.timeline();
 
     // VERTICAL ANIMATION
-    milleniumRef.current.to(
+    tl.current.to(
       milleniumRef.current.position,
       {
         duration: 2,
-        y: FLOOR_HEIGHT * (NB_FLOORS - 10),
+        x: FLOOR_HEIGHT * (NB_FLOORS + 120),
       },
-      10
+      
     );
   })
 
+// useFrame(() => {
+//     tl.current.seek(scroll.offset * tl.current.duration());
+//   });
+
   return (
-    <mesh position={[0, 10, -100]} scale={[0.1, 0.1, 0.1]}>
+    <a.group ref={milleniumRef} {...props}>
+    <mesh position={[-120, 50, -100]} scale={[0.1, 0.1, 0.1]}>
       <primitive object={scene} />
     </mesh>
+    </a.group>
     // <a.group ref={milleniumRef}{...props}>
     //   <group scale={0.365}>
     //     <mesh

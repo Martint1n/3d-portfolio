@@ -22,25 +22,23 @@ function Tokyo(props) {
   const scroll = useScroll();
   const tl = useRef();
 
-  useLayoutEffect(() => {
-    tl.current = gsap.timeline();
+  // useLayoutEffect(() => {
+  //   tl.current = gsap.timeline();
 
-    // VERTICAL ANIMATION
-    tl.current.to(
-      tokyoRef.current.position,
-      {
-        duration: 2,
-        y: -FLOOR_HEIGHT * (NB_FLOORS - 1),
-      },
-      0
-    );
-  })
+  //   // VERTICAL ANIMATION
+  //   tl.current.to(
+  //     tokyoRef.current.position,
+  //     {
+  //       duration: 2,
+  //       y: -FLOOR_HEIGHT * (NB_FLOORS - 1),
+  //     },
+  //     0
+  //   );
+  // })
 
 // useFrame(() => {
 //     tl.current.seek(scroll.offset * tl.current.duration());
 //   });
-
-
   return (
     <a.group ref={tokyoRef}{...props}>
       <mesh

@@ -63,7 +63,7 @@ function Home() {
         scale= {[100, 100, 100]}
         position={[0, 2, 1]}
       />
-      <Millenium /> 
+      
       <SwordFishII
         scale= {[0.0009, 0.0009, 0.0009]}
         position={[5, 10, 5]}
@@ -71,6 +71,7 @@ function Home() {
       />
       <ScrollControls pages={3} damping={0.25}>
         <Overlay />
+        <Millenium /> 
         <Tokyo 
           scale= {screenScale}
           position={screenPosition}
