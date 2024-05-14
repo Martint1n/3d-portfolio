@@ -1,4 +1,7 @@
+import { useThree } from '@react-three/fiber';
+import { CubeTextureLoader } from 'three';
 import React from 'react'
+
 
 function Sky() {
     // var skyGeo = new THREE.SphereGeometry(100000, 25, 25); 
@@ -10,10 +13,24 @@ function Sky() {
     // var sky = new THREE.Mesh(skyGeo, material);
     // sky.material.side = THREE.BackSide;
     // scene.add(sky);
+    const {scene} = useThree();
+    const loader = new CubeTextureLoader();
+    const texture = loader.load([
+
+    ])
 
     return (
-        <mesh></mesh>
+        <mesh>
+            <boxGeometry attach="geometry" args={[32, 32, 32]} />
+            <meshBasicMaterial
+                attach='material'
+                color='white'
+                roughness={0.1}
+                metalness={1}
+            />
+
+        </mesh>
     )
 }
 
-export default Sky
+export default Sky;

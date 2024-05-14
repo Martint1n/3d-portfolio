@@ -2,15 +2,18 @@ import { Suspense, useState, useEffect, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Tokyo from '../models/Tokyo';
-import Sky from '../models/Sky';
-import { OrbitControls } from '@react-three/drei';
+import Milkyway from '../models/Milkyway';
+import Millenium from '../models/Millenium';
+import SwordFishII from '../models/SwordFishII';
+import Overlay from './Overlay';
+import { OrbitControls, ScrollControls } from '@react-three/drei';
 import { SpotLight } from 'three';
 
 function Home() {
   const [screenScale, setScreenScale] = useState(null);
   const [screenPosition, setScreenPostion] = useState([0, -6.5, -43]);
   const [rotation, setRotation] = useState([0.1, 4.7, 0]);
-
+  const [isScrolling, setIsScrolling] = useState(false);
 
   useEffect(() => {
     function adjustTokyoForScreenSize() {
@@ -54,16 +57,26 @@ function Home() {
           />
           <primitive object={spotlightTowardUser.target} position={[0, 0, 120]} />
         </group>
-        <OrbitControls />
+        <OrbitControls enableZoom={false}/>
       </Suspense>
-      <Sky>
-        
-      </Sky>
-      <Tokyo 
-        scale= {screenScale}
-        position={screenPosition}
-        rotation={rotation}
+      <Milkyway 
+        scale= {[100, 100, 100]}
+        position={[0, 2, 1]}
       />
+      <Millenium /> 
+      <SwordFishII
+        scale= {[0.0009, 0.0009, 0.0009]}
+        position={[5, 10, 5]}
+        rotation={[-Math.PI / 2, 0, 0]}
+      />
+      <ScrollControls pages={3} damping={0.25}>
+        <Overlay />
+        <Tokyo 
+          scale= {screenScale}
+          position={screenPosition}
+          rotation={rotation}
+        />
+      </ScrollControls>
       </Canvas>
     </div>
   );

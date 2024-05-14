@@ -6,15 +6,41 @@ Source: https://sketchfab.com/3d-models/a-regular-day-in-neo-tokyo-b5474d6b71004
 Title: A regular day in Neo-Tokyo
 */
 
-import React, { useRef, useEffect } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
+import { useGLTF, useScroll } from '@react-three/drei';
 import { useFrame, useThee} from '@react-three/fiber';
 import tokyoScene from '../public/a_regular_day_in_neo-tokyo.glb';
 import { a } from '@react-spring/three'; //enable animations
+import gsap from 'gsap';
+
+export const FLOOR_HEIGHT = 2.3;
+export const NB_FLOORS = 10;
 
 function Tokyo(props) {
   const { nodes, materials } = useGLTF(tokyoScene)
   const tokyoRef = useRef()
+  const scroll = useScroll();
+  const tl = useRef();
+
+  useLayoutEffect(() => {
+    tl.current = gsap.timeline();
+
+    // VERTICAL ANIMATION
+    tl.current.to(
+      tokyoRef.current.position,
+      {
+        duration: 2,
+        y: -FLOOR_HEIGHT * (NB_FLOORS - 1),
+      },
+      0
+    );
+  })
+
+// useFrame(() => {
+//     tl.current.seek(scroll.offset * tl.current.duration());
+//   });
+
+
   return (
     <a.group ref={tokyoRef}{...props}>
       <mesh

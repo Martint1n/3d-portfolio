@@ -6,105 +6,128 @@ Source: https://sketchfab.com/3d-models/millenium-falcon-64a83c7671274870889d19e
 Title: Millenium Falcon
 */
 
-import React, { useRef, useEffect } from 'react';
-import { useGLTF } from '@react-three/drei';
+import React, { useRef, useLayoutEffect, useEffect } from 'react';
+import { useGLTF, useScroll } from '@react-three/drei';
 import { useFrame, useThee} from '@react-three/fiber';
 import milleniumScene from '../public/millenium_falcon.glb';
 import { a } from '@react-spring/three'; //enable animations
+import { FLOOR_HEIGHT, NB_FLOORS } from './Tokyo';
+import gsap from 'gsap';
 
-export function Model(props) {
-  const { nodes, materials } = useGLTF(milleniumScene)
+export function Millenium(props) {
+  console.log(FLOOR_HEIGHT);
+  const scroll = useScroll();
+  const tl = useRef();
+  const { nodes, materials, scene, animation } = useGLTF(milleniumScene)
   const milleniumRef = useRef()
+
+  useLayoutEffect(() => {
+    milleniumRef.current = gsap.timeline();
+
+    // VERTICAL ANIMATION
+    milleniumRef.current.to(
+      milleniumRef.current.position,
+      {
+        duration: 2,
+        y: FLOOR_HEIGHT * (NB_FLOORS - 10),
+      },
+      10
+    );
+  })
+
   return (
-    <a.group {...props} dispose={null}>
-      <group scale={0.365}>
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_4.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_5.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_shield_front.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_6.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_cockpit.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_7.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_front_parts.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_8.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_thrusters.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_9.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_shield_rear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_10.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_thrusters.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_11.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_12.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_13.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_14.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_15.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_16.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_disk.grid']}
-        />
-        <mesh
-          castShadow
-          receiveShadow
-          geometry={nodes.Object_17.geometry}
-          material={materials['modelsmap_objectsshipsfalcon_shield_front.grid']}
-        />
-      </group>
-    </a.group>
+    <mesh position={[0, 10, -100]} scale={[0.1, 0.1, 0.1]}>
+      <primitive object={scene} />
+    </mesh>
+    // <a.group ref={milleniumRef}{...props}>
+    //   <group scale={0.365}>
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_4.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_5.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_shield_front.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_6.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_cockpit.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_7.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_front_parts.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_8.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_thrusters.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_9.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_shield_rear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_10.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_thrusters.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_11.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_12.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_13.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_14.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_15.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_16.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_disk.grid']}
+    //     />
+    //     <mesh
+    //       castShadow
+    //       receiveShadow
+    //       geometry={nodes.Object_17.geometry}
+    //       material={materials['modelsmap_objectsshipsfalcon_shield_front.grid']}
+    //     />
+    //   </group>
+    // </a.group>
   )
 }
 
-useGLTF.preload('/millenium_falcon.glb')
+export default Millenium;
