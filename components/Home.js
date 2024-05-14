@@ -2,6 +2,7 @@ import { Suspense, useState, useEffect, useMemo } from 'react';
 import { Canvas } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Tokyo from '../models/Tokyo';
+import Sky from '../models/Sky';
 import { OrbitControls } from '@react-three/drei';
 import { SpotLight } from 'three';
 
@@ -55,6 +56,9 @@ function Home() {
         </group>
         <OrbitControls />
       </Suspense>
+      <Sky>
+        
+      </Sky>
       <Tokyo 
         scale= {screenScale}
         position={screenPosition}
