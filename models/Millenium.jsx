@@ -28,8 +28,8 @@ export function Millenium(props) {
     tl.current.to(
       milleniumRef.current.position,
       {
-        duration: 2,
-        x: FLOOR_HEIGHT * (NB_FLOORS + 120),
+        duration: 6,
+        x: FLOOR_HEIGHT * (NB_FLOORS + 300),
       },
       
     );
