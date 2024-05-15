@@ -5,7 +5,8 @@ function App({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>Next.js App</title>
+        <link rel="shortcut icon" href="/capsule-icon.svg" />
+        <title>3d_Portfolio</title>
       </Head>
       <Component {...pageProps} />
     </>

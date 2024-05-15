@@ -13,22 +13,41 @@ import swordFishIIScene from '../public/swordfish_ii_-_fan_art-2.glb';
 import { a, useScroll } from '@react-spring/three'; //enable animations
 import { useUpdate } from '@react-three/fiber';
 import * as THREE from 'three';
-import { OrbitControls } from '@react-three/drei';
+
 
 export function swordFishII(props) {
   const { nodes, materials, scene, animation } = useGLTF(swordFishIIScene)
   const swordFishIIRef = useRef()
-  useFrame((state, delta) => {
-    // Définir le point autour duquel vous voulez faire orbiter l'objet
-    const pivotPoint = props.pivotPoint;
 
-    // Rotation de l'objet autour de l'axe spécifié et du point de pivot
-    swordFishIIRef.current.position.sub(pivotPoint); // Translation pour centrer l'objet sur le point de pivot
-    swordFishIIRef.current.rotateOnAxis(props.axis, 0.1 * delta); // Rotation
-    swordFishIIRef.current.position.add(pivotPoint); // Translation de retour à sa position d'origine
+  useFrame((state, delta) => {
+    // Angle de rotation (en radians) pour simuler la rotation orbitale
+    const angle = state.clock.elapsedTime * 0.5;
+
+    // Nouvelles coordonnées du centre de l'orbite
+    const centerX = 0;
+    // const centerY = -6;
+    const centerZ = -43;
+
+    // Calcul des coordonnées x et z en fonction de l'angle et du rayon de l'orbite
+    const x = Math.cos(angle) * props.orbitRadius + centerX;
+    // const y = Math.sin(angle) * props.orbitRadius + centerY;
+    const z = Math.sin(angle) * props.orbitRadius + centerZ;
+
+
+    // Positionner l'objet à sa position orbitale
+    swordFishIIRef.current.position.set(-x, 0, z);
+
+    // Faire en sorte que l'objet regarde vers le centre de l'orbite (0, 0, 0)
+    swordFishIIRef.current.lookAt(10, 10, 100);
+
+    swordFishIIRef.current.rotation.x = Math.atan2(z - centerZ, x - centerX);
+    swordFishIIRef.current.rotation.y = 0
+    swordFishIIRef.current.rotation.z = Math.atan2(z - centerZ, x - centerX);
   });
+
+
 return (
-    <group ref={swordFishIIRef}{...props}>
+    <group ref={swordFishIIRef}{...props} >
           <mesh
             castShadow
             receiveShadow

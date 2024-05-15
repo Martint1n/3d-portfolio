@@ -9,7 +9,11 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      cursor: {
+        'reticle': 'url(/target-design-svgrepo-com.svg), crosshair',
+      },
+    },
   },
   plugins: [],
 }

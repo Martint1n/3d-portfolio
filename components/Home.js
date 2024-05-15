@@ -1,11 +1,12 @@
-import { Suspense, useState, useEffect, useMemo } from 'react';
-import { Canvas } from '@react-three/fiber';
+import { Suspense, useState, useEffect, useMemo, useRef } from 'react';
+import { Canvas, useThree } from '@react-three/fiber';
 import Loader from '../components/Loader';
 import Tokyo from '../models/Tokyo';
 import Milkyway from '../models/Milkyway';
 import Millenium from '../models/Millenium';
 import SwordFishII from '../models/SwordFishII';
 import Overlay from './Overlay';
+import Laser from '../models/Laser';
 import { OrbitControls, ScrollControls, Scroll } from '@react-three/drei';
 import { SpotLight } from 'three';
 import { useScroll } from '@react-spring/three'; 
@@ -21,8 +22,9 @@ function Home() {
   const totalRotationSwordFish = [-Math.PI / xRotationSwordFish, yRotationSwordFish, zRotationSwordFish]
   const spotlight = useMemo(() => new SpotLight('#fff'), []);
   const spotlightTowardUser = useMemo(() => new SpotLight('#fff'), []);
-
+  const [count, setCount] = useState(0)
   const pivotPoint = new THREE.Vector3(0, 0, 0);
+
 
   useEffect(() => { // window nécessite un useEffect avec NextJS
     function adjustTokyoForScreenSize() {
@@ -40,11 +42,6 @@ function Home() {
     setScreenPostion([0, -6, -43])
   }
 
-const swordFishScroll = () => {
-  console.log('SCROOOOLL')
-  setZRotationSwordFish(zRotationSwordFish + 1)
-}
-
 let milleniumFly = false;
 if(screenPosition[2] < 0) {
   milleniumFly = true;
@@ -52,8 +49,20 @@ if(screenPosition[2] < 0) {
   milleniumFly = false;
 }
 
+const increaseCount = () => {
+  console.log('click')
+  setCount(count + 1)
+}
+const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  // Fonction pour gérer le clic de la souris
+  const handleClick = (event) => {
+    const { clientX, clientY } = event;
+    setMousePosition({x: clientX, y: clientY})
+  };
+  
   return (
-    <div className='w-full h-screen relative'>
+    <div className='w-full h-screen relative cursor-reticle' onClick={(e) => {handleClick(e)}}>
       <Canvas 
         className='w-full h-screen bg-transparent absolute'
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
@@ -85,17 +94,19 @@ if(screenPosition[2] < 0) {
         scale= {[100, 100, 100]}
         position={[0, 2, 1]}
       />
-      <ScrollControls pages={3} damping={0.25}>
-        <Overlay onScroll={() => swordFishScroll()}/>
-        { milleniumFly && <Millenium /> }
         <SwordFishII
           scale= {[0.0009, 0.0009, 0.0009]}
           position={[-20, 10, -20]}
-          rotation={totalRotationSwordFish}
+          rotation={(-Math.PI / [2, 0, 3])}
           pivotPoint = {pivotPoint}
           axis={new THREE.Vector3(1, 1, 0)} 
           angle={Math.PI / 2}
+          orbitRadius={60}
       />
+      <ScrollControls pages={3} damping={0.25}>
+        <Overlay onScroll={() => swordFishScroll()}/>
+        { milleniumFly && <Millenium /> }
+
       <Tokyo 
         scale= {screenScale}
         position={screenPosition}
@@ -103,6 +114,7 @@ if(screenPosition[2] < 0) {
         resizeCamera = {resizeCamera}
       />
       </ScrollControls>
+      <Laser count={count} mousePosition={mousePosition}/>
       </Canvas>
     </div>
   );
