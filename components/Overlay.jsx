@@ -2,11 +2,15 @@ import React from 'react';
 import { Scroll } from "@react-three/drei";
 import Section from './Section';
 
+//inverse dataFlow pour envoyer dans home les données x, y, z en fonction du scroll ??
 
 function Overlay() {
     return (
         <Scroll html>
         <div class="w-screen">
+            <div class='w- screen h-[10%]'>
+                <h1>Un aperçu de l'avenir au centre et une alternative autour</h1>
+            </div>
           <Section>
             <h1 className="font-semibold font-serif text-2xl">
               Hello, I'm Wawa Sensei

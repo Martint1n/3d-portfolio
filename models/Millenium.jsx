@@ -21,19 +21,21 @@ export function Millenium(props) {
   const { nodes, materials, scene, animation } = useGLTF(milleniumScene)
   const milleniumRef = useRef()
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     tl.current = gsap.timeline();
 
     // VERTICAL ANIMATION
     tl.current.to(
       milleniumRef.current.position,
       {
-        duration: 6,
+        duration: 12,
         x: FLOOR_HEIGHT * (NB_FLOORS + 300),
       },
       
     );
-  })
+    console.log(props.camera)
+  }, [])
+
 
 // useFrame(() => {
 //     tl.current.seek(scroll.offset * tl.current.duration());
@@ -41,7 +43,7 @@ export function Millenium(props) {
 
   return (
     <a.group ref={milleniumRef} {...props}>
-    <mesh position={[-120, 50, -100]} scale={[0.1, 0.1, 0.1]}>
+    <mesh position={[-120, 50, -100]} scale={[0.1, 0.1, 0.1]} material={materials['modelsmap_objectsshipsfalcon_landing_gear.grid']}>
       <primitive object={scene} />
     </mesh>
     </a.group>

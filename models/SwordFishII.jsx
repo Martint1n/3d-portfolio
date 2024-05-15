@@ -8,15 +8,27 @@ Title: Swordfish II - Fan Art
 
 import React, { useRef, useEffect } from 'react';
 import { useGLTF } from '@react-three/drei';
-import { useFrame, useThee} from '@react-three/fiber';
+import { useFrame, useThree} from '@react-three/fiber';
 import swordFishIIScene from '../public/swordfish_ii_-_fan_art-2.glb';
-import { a } from '@react-spring/three'; //enable animations
+import { a, useScroll } from '@react-spring/three'; //enable animations
+import { useUpdate } from '@react-three/fiber';
+import * as THREE from 'three';
+import { OrbitControls } from '@react-three/drei';
 
 export function swordFishII(props) {
-  const { nodes, materials } = useGLTF(swordFishIIScene)
+  const { nodes, materials, scene, animation } = useGLTF(swordFishIIScene)
   const swordFishIIRef = useRef()
-  return (
-    <a.group ref={swordFishIIRef}{...props}>
+  useFrame((state, delta) => {
+    // Définir le point autour duquel vous voulez faire orbiter l'objet
+    const pivotPoint = props.pivotPoint;
+
+    // Rotation de l'objet autour de l'axe spécifié et du point de pivot
+    swordFishIIRef.current.position.sub(pivotPoint); // Translation pour centrer l'objet sur le point de pivot
+    swordFishIIRef.current.rotateOnAxis(props.axis, 0.1 * delta); // Rotation
+    swordFishIIRef.current.position.add(pivotPoint); // Translation de retour à sa position d'origine
+  });
+return (
+    <group ref={swordFishIIRef}{...props}>
           <mesh
             castShadow
             receiveShadow
@@ -115,20 +127,21 @@ export function swordFishII(props) {
             material={materials.Wall}
             
           />
+          {/* mesh 14: missile
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.defaultMaterial_14.geometry}
             material={materials.Wall}
             
-          />
+          />{/* 
           <mesh
             castShadow
             receiveShadow
             geometry={nodes.defaultMaterial_15.geometry}
             material={materials.Wall}
             
-          />
+          /> */}
           <mesh
             castShadow
             receiveShadow
@@ -227,7 +240,7 @@ export function swordFishII(props) {
             material={materials.Wall}
             
           />
-    </a.group>
+    </group>
   )
 }
 

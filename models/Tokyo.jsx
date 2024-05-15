@@ -52,7 +52,7 @@ function Tokyo(props) {
         
         geometry={nodes.BASE_BASEyESCOMBROS_0.geometry}
         material={materials.BASEyESCOMBROS}
-      />
+      /> 
       <mesh
         
         
@@ -137,18 +137,15 @@ function Tokyo(props) {
         geometry={nodes.EDIFICIOS1_EDIFICIOS_0_5.geometry}
         material={materials.EDIFICIOS}
       />
-      <mesh
-        
-        
+       <mesh // blue capsule
+        onClick={() => props.resizeCamera()}
         geometry={nodes.polySurface6_lambert8_0.geometry}
         material={materials.lambert8}
       />
-      <mesh
-        
-        
+      <mesh // red capsule
         geometry={nodes.polySurface7_lambert9_0.geometry}
         material={materials.lambert9}
-      />
+      /> 
       <mesh
         
         

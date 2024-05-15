@@ -6,16 +6,25 @@ import Milkyway from '../models/Milkyway';
 import Millenium from '../models/Millenium';
 import SwordFishII from '../models/SwordFishII';
 import Overlay from './Overlay';
-import { OrbitControls, ScrollControls } from '@react-three/drei';
+import { OrbitControls, ScrollControls, Scroll } from '@react-three/drei';
 import { SpotLight } from 'three';
+import { useScroll } from '@react-spring/three'; 
+import * as THREE from 'three';
 
 function Home() {
-  const [screenScale, setScreenScale] = useState(null);
-  const [screenPosition, setScreenPostion] = useState([0, -6.5, -43]);
-  const [rotation, setRotation] = useState([0.1, 4.7, 0]);
-  const [isScrolling, setIsScrolling] = useState(false);
+  const [screenScale, setScreenScale] = useState(null); // scale de Tokyo
+  const [screenPosition, setScreenPostion] = useState([0, 0, 0]); // position de Tokyo
+  const [rotation, setRotation] = useState([0.1, 4.7, 0]); // Rotation de Tokyo
+  const [xRotationSwordFish, setXRotationSwordFish] = useState(2);
+  const [yRotationSwordFish, setYRotationSwordFish] = useState(0);
+  const [zRotationSwordFish, setZRotationSwordFish] = useState(3);
+  const totalRotationSwordFish = [-Math.PI / xRotationSwordFish, yRotationSwordFish, zRotationSwordFish]
+  const spotlight = useMemo(() => new SpotLight('#fff'), []);
+  const spotlightTowardUser = useMemo(() => new SpotLight('#fff'), []);
 
-  useEffect(() => {
+  const pivotPoint = new THREE.Vector3(0, 0, 0);
+
+  useEffect(() => { // window nécessite un useEffect avec NextJS
     function adjustTokyoForScreenSize() {
       if (window.innerWidth < 768) {
         setScreenScale([0.9, 0.9, 0.9]);
@@ -23,11 +32,25 @@ function Home() {
         setScreenScale([1, 1, 1]);
       }
     }
-
     adjustTokyoForScreenSize();
   }, [])
-  const spotlight = useMemo(() => new SpotLight('#fff'), []);
-  const spotlightTowardUser = useMemo(() => new SpotLight('#fff'), []); // Créer une instance pour le deuxième projecteur
+
+  const resizeCamera = () => {
+    // ajouter un temps de chargement au clic pour charger les éléments (millenium pour le moment)
+    setScreenPostion([0, -6, -43])
+  }
+
+const swordFishScroll = () => {
+  console.log('SCROOOOLL')
+  setZRotationSwordFish(zRotationSwordFish + 1)
+}
+
+let milleniumFly = false;
+if(screenPosition[2] < 0) {
+  milleniumFly = true;
+} else {
+  milleniumFly = false;
+}
 
   return (
     <div className='w-full h-screen relative'>
@@ -36,7 +59,6 @@ function Home() {
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
       >
       <Suspense fallback={<Loader />}> //loading screen while waiting for 3D model
-
         <group>
           <primitive
             object={spotlight}
@@ -57,26 +79,29 @@ function Home() {
           />
           <primitive object={spotlightTowardUser.target} position={[0, 0, 120]} />
         </group>
-        <OrbitControls enableZoom={false}/>
+        <OrbitControls />
       </Suspense>
       <Milkyway 
         scale= {[100, 100, 100]}
         position={[0, 2, 1]}
       />
-      
-      <SwordFishII
-        scale= {[0.0009, 0.0009, 0.0009]}
-        position={[5, 10, 5]}
-        rotation={[-Math.PI / 2, 0, 0]}
-      />
       <ScrollControls pages={3} damping={0.25}>
-        <Overlay />
-        <Millenium /> 
-        <Tokyo 
-          scale= {screenScale}
-          position={screenPosition}
-          rotation={rotation}
-        />
+        <Overlay onScroll={() => swordFishScroll()}/>
+        { milleniumFly && <Millenium /> }
+        <SwordFishII
+          scale= {[0.0009, 0.0009, 0.0009]}
+          position={[-20, 10, -20]}
+          rotation={totalRotationSwordFish}
+          pivotPoint = {pivotPoint}
+          axis={new THREE.Vector3(1, 1, 0)} 
+          angle={Math.PI / 2}
+      />
+      <Tokyo 
+        scale= {screenScale}
+        position={screenPosition}
+        rotation={rotation}
+        resizeCamera = {resizeCamera}
+      />
       </ScrollControls>
       </Canvas>
     </div>
