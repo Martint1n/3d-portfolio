@@ -34,7 +34,7 @@ function Laser(props) {
         tl.current.to(
         laserRef.current.position,
         {
-            duration: 50,
+            duration: 10,
             x: 0,
             y: 0,
             z: -100,
