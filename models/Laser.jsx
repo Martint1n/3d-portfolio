@@ -21,7 +21,7 @@ function Laser(props) {
     const tl = useRef();
 
     useEffect(() => {
-        laserRef.current.lookAt(new THREE.Vector3(props.mousePosition.x ? props.mousePosition.x : 0, props.mousePosition.y ? props.mousePosition.y : 0, -200))
+        laserRef.current.lookAt(new THREE.Vector3(0, 0, -200))
         console.log('count is ok')
         console.log('test', props.count)
 
@@ -35,8 +35,8 @@ function Laser(props) {
         laserRef.current.position,
         {
             duration: 50,
-            x:  props.mousePosition.x ? props.mousePosition.x : 0,
-            y:  props.mousePosition.y ? props.mousePosition.y : 0,
+            x: 0,
+            y: 0,
             z: -100,
             
         },
