@@ -62,7 +62,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   };
   
   return (
-    <div className='w-full h-screen relative cursor-reticle' onClick={(e) => {handleClick(e)}}>
+    <div className='w-full h-screen relative cursor-reticle' onClick={(e) => {handleClick(e), increaseCount()}}>
       <Canvas 
         className='w-full h-screen bg-transparent absolute'
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
@@ -97,7 +97,6 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         <SwordFishII
           scale= {[0.0009, 0.0009, 0.0009]}
           position={[-20, 10, -20]}
-          rotation={(-Math.PI / [2, 0, 3])}
           pivotPoint = {pivotPoint}
           axis={new THREE.Vector3(1, 1, 0)} 
           angle={Math.PI / 2}

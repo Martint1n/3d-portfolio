@@ -18,10 +18,18 @@ import * as THREE from 'three';
 export function swordFishII(props) {
   const { nodes, materials, scene, animation } = useGLTF(swordFishIIScene)
   const swordFishIIRef = useRef()
+  const previousPosition = useRef(new THREE.Vector3(0, 0, 0)); // Stocke la position précédente
+  const initialPosition = useRef(new THREE.Vector3(2, 1, 3));
+  swordFishIIRef.current.rotation.x = 2
+  swordFishIIRef.current.rotation.z = 3
+
+
+
+
 
   useFrame((state, delta) => {
     // Angle de rotation (en radians) pour simuler la rotation orbitale
-    const angle = state.clock.elapsedTime * 0.5;
+    const angle = state.clock.elapsedTime * 0.3;
 
     // Nouvelles coordonnées du centre de l'orbite
     const centerX = 0;
@@ -37,12 +45,25 @@ export function swordFishII(props) {
     // Positionner l'objet à sa position orbitale
     swordFishIIRef.current.position.set(-x, 0, z);
 
-    // Faire en sorte que l'objet regarde vers le centre de l'orbite (0, 0, 0)
-    swordFishIIRef.current.lookAt(10, 10, 100);
+// Calculer l'orientation cible (pointant vers le centre du disque)
+// Calculer l'orientation cible (pointant vers le centre du disque)
+  const currentPosition = new THREE.Vector3(-x, 0, z);
+    const direction = currentPosition.clone().sub(previousPosition.current).normalize();
 
-    swordFishIIRef.current.rotation.x = Math.atan2(z - centerZ, x - centerX);
-    swordFishIIRef.current.rotation.y = 0
-    swordFishIIRef.current.rotation.z = Math.atan2(z - centerZ, x - centerX);
+    // Stocker la position actuelle pour la prochaine itération
+    previousPosition.current = currentPosition;
+
+    // Appliquer la direction de déplacement à l'orientation du cube
+    const targetOrientation = new THREE.Matrix4().lookAt(
+      new THREE.Vector3(0, 0, 0),
+      direction,
+      new THREE.Vector3(0, 1, 0)
+    );
+
+    // Appliquer l'orientation cible à l'objet
+    swordFishIIRef.current.position.set(-x, 0, z);
+    swordFishIIRef.current.quaternion.setFromRotationMatrix(targetOrientation);
+
   });
 
 

@@ -22,21 +22,28 @@ function Laser(props) {
 
     useEffect(() => {
         laserRef.current.lookAt(new THREE.Vector3(0, 0, -43))
-    }, [])
+        console.log('count is ok')
+        console.log('test', props.count)
+
+        const newPosition = new THREE.Vector3(0, 10, 5);
+        laserRef.current.position.copy(newPosition);
+
+        tl.current = gsap.timeline();
+        console.log(props.mousePosition)
+        // VERTICAL ANIMATION
+        tl.current.to(
+        laserRef.current.position,
+        {
+            duration: 1,
+            x:  0,
+            y:  0,
+            z: -100,
+        },
+        );
+    }, [props.count])
 
 
-    //     tl.current = gsap.timeline();
-    
-    //     // VERTICAL ANIMATION
-    //     tl.current.to(
-    //     laserRef.current.position,
-    //     {
-    //         duration: 12,
-    //         x: FLOOR_HEIGHT * (NB_FLOORS + 300),
-    //     },
-    //     );
-    //     console.log(props.count)
-    // }, [props.count])
+        
 
     return (
         <mesh ref = {laserRef} position={[0, 5, -10]}>
