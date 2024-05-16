@@ -21,7 +21,7 @@ function Laser(props) {
     const tl = useRef();
 
     useEffect(() => {
-        laserRef.current.lookAt(new THREE.Vector3(0, 0, -43))
+        laserRef.current.lookAt(new THREE.Vector3(props.mousePosition.x, props.mousePosition.y, -200))
         console.log('count is ok')
         console.log('test', props.count)
 
@@ -34,11 +34,28 @@ function Laser(props) {
         tl.current.to(
         laserRef.current.position,
         {
-            duration: 1,
-            x:  0,
-            y:  0,
+            duration: 50,
+            x:  props.mousePosition.x,
+            y:  props.mousePosition.y,
             z: -100,
+            
         },
+        // gsap.to(
+        //     laserRef.current.position,
+        //     {
+        //         duration: 0, // Durée de l'animation
+        //         x: 0,
+        //         y: 10,
+        //         z: 5,
+        //         onComplete: () => {
+        //             // Déclencher à nouveau le mouvement si nécessaire
+        //             if (props.count !== undefined) {
+        //                 // Réappliquer le tween pour redémarrer le mouvement
+        //                 tl.current.restart();
+        //             }
+        //         }
+        //     }
+        // ),
         );
     }, [props.count])
 
