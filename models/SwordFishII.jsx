@@ -20,10 +20,6 @@ export function swordFishII(props) {
   const swordFishIIRef = useRef()
   const previousPosition = useRef(new THREE.Vector3(0, 0, 0)); // Stocke la position précédente
   const initialPosition = useRef(new THREE.Vector3(2, 1, 3));
-  swordFishIIRef.current.rotation.x = 2
-  swordFishIIRef.current.rotation.z = 3
-
-
 
 
 
