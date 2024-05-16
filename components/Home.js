@@ -103,7 +103,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
           orbitRadius={60}
       />
       <ScrollControls pages={3} damping={0.25}>
-        <Overlay onScroll={() => swordFishScroll()}/>
+        {/* <Overlay onScroll={() => swordFishScroll()}/> */}
         { milleniumFly && <Millenium /> }
 
       <Tokyo 
