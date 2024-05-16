@@ -11,6 +11,7 @@ import { OrbitControls, ScrollControls, Scroll } from '@react-three/drei';
 import { SpotLight } from 'three';
 import { useScroll } from '@react-spring/three'; 
 import * as THREE from 'three';
+import useSound from 'use-sound';
 
 function Home() {
   const [screenScale, setScreenScale] = useState(null); // scale de Tokyo
@@ -24,7 +25,7 @@ function Home() {
   const spotlightTowardUser = useMemo(() => new SpotLight('#fff'), []);
   const [count, setCount] = useState(0)
   const pivotPoint = new THREE.Vector3(0, 0, 0);
-
+  const [playSound] = useSound('laser-one-shot-1.wav');
 
   useEffect(() => { // window nécessite un useEffect avec NextJS
     function adjustTokyoForScreenSize() {
@@ -61,8 +62,16 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     setMousePosition({x: clientX, y: clientY})
   };
   
+  const audioRef = useRef();
+  const handlePlay = () => {
+    audioRef.current.play();
+  };
+
   return (
-    <div className='w-full h-screen relative cursor-reticle' onClick={(e) => {handleClick(e), increaseCount()}}>
+    <div className='w-full h-screen relative cursor-reticle' onClick={(e) => {handleClick(e), increaseCount(), handlePlay()}}>
+      <audio ref={audioRef}>
+        <source src="/laser-one-shot-1.wav" type="audio/wav" />
+      </audio>
       <Canvas 
         className='w-full h-screen bg-transparent absolute'
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
