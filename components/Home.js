@@ -77,7 +77,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         <div className="fi fi-fr"></div>
       </div>
 
-      <div className='w-[80vw] min-h-[60vh] border-2 border-yellow self-center'>
+      <div className='w-[80vw] min-h-[50vh] border-2 border-yellow self-center'>
       {/* <Canvas 
         className='w-full h-screen bg-transparent absolute'
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
@@ -145,7 +145,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         </Canvas>
       </div>
 
-      <div className='flex justify-center'>
+      <div className='flex justify-center pb-15'>
         <p className='text-whiteBlue w-3/4 text-center'>
         En attente d'instruction du Cube.
         </p>
