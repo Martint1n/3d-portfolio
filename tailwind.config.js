@@ -9,10 +9,17 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    colors:{
+      blue: '#011627',
+      lightBlue: '#2E86AB',
+      yellow: '#F2CD5D',
+      whiteBlue: '#E3F2FD'
+    },
     extend: {
       cursor: {
         'reticle': 'url(/target-design-svgrepo-com.svg), crosshair',
       },
+      
     },
   },
   plugins: [],

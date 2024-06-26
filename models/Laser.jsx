@@ -35,10 +35,10 @@ function Laser(props) {
         tl.current.to(
         laserRef.current.position,
         {
-            duration: 1,
+            duration: 5,
             x:  0,
             y:  0,
-            z: -100,
+            z: -500,
         },
         );
     }, [props.count])

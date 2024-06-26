@@ -18,7 +18,7 @@ import * as THREE from 'three';
 export function swordFishII(props) {
   const { nodes, materials, scene, animation } = useGLTF(swordFishIIScene)
   const swordFishIIRef = useRef()
-  const previousPosition = useRef(new THREE.Vector3(0, 0, 0)); // Stocke la position précédente
+  const previousPosition = useRef(new THREE.Vector3(0, 20, 0)); // Stocke la position précédente
   const initialPosition = useRef(new THREE.Vector3(2, 1, 3));
 
 
@@ -29,8 +29,8 @@ export function swordFishII(props) {
 
     // Nouvelles coordonnées du centre de l'orbite
     const centerX = 0;
-    // const centerY = -6;
-    const centerZ = -43;
+    const centerY = 10;
+    const centerZ = 0;
 
     // Calcul des coordonnées x et z en fonction de l'angle et du rayon de l'orbite
     const x = Math.cos(angle) * props.orbitRadius + centerX;
@@ -39,11 +39,10 @@ export function swordFishII(props) {
 
 
     // Positionner l'objet à sa position orbitale
-    swordFishIIRef.current.position.set(-x, 0, z);
+    swordFishIIRef.current.position.set(-x, 20, z);
 
 // Calculer l'orientation cible (pointant vers le centre du disque)
-// Calculer l'orientation cible (pointant vers le centre du disque)
-  const currentPosition = new THREE.Vector3(-x, 0, z);
+  const currentPosition = new THREE.Vector3(-x, 20, z);
     const direction = currentPosition.clone().sub(previousPosition.current).normalize();
 
     // Stocker la position actuelle pour la prochaine itération
@@ -51,7 +50,7 @@ export function swordFishII(props) {
 
     // Appliquer la direction de déplacement à l'orientation du cube
     const targetOrientation = new THREE.Matrix4().lookAt(
-      new THREE.Vector3(0, 0, 0),
+      new THREE.Vector3(0, -8, 0),
       direction,
       new THREE.Vector3(0, 1, 0)
     );
@@ -64,7 +63,7 @@ export function swordFishII(props) {
 
 
 return (
-    <group ref={swordFishIIRef}{...props} >
+    <group ref={swordFishIIRef}{...props} rotation={[2, 0, 3]}>
           <mesh
             castShadow
             receiveShadow
