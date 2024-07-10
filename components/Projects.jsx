@@ -10,9 +10,9 @@ function Projects () {
   const {t} = useTranslation();
   const swiperRef = React.useRef();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const renoskem = <div className='w-full h-full text-center flex flex-col justify-around items-center'>
+  const renoskem = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
       <p className='text-whiteBlue text-3xl'>RenoSkem</p>
-      <p>{t('projects.renoskem.introduction')}</p>
+      <p className=''>{t('projects.renoskem.introduction')}</p>
       <div className='flex flex-col'>
         <a className='text-whiteBlue pb-2 underline' href='https://github.com/craftByElla/RenoSkem_Frontend' target="_blank">{t('projects.renoskem.linkGithubFront')}</a>
         <a className='text-whiteBlue underline' href='https://github.com/craftByElla/RenoSkem_Backend' target="_blank">{t('projects.renoskem.linkGithubFront')}</a>
@@ -30,46 +30,30 @@ function Projects () {
       </Modal>
     </div>
 
-  const tournoi = <div className='w-full h-full text-center flex flex-col justify-around items-center'>
+  const tournoi = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
     <p className='text-whiteBlue text-3xl'>Tournoi des maisons</p>
-    <p>Ce projet est une site premettant l'affichage de points
-    attribués aux participants
-    dans le but de créer de l'activité
-    sur Instagram</p>
-    <p>{t('projects.tounoi.design')}</p>
+    <p>{t('projects.tournoi.introduction')}</p>
+    <p>{t('projects.tournoi.design')}</p>
     <div className='flex flex-col'>
-      <a className='text-whiteBlue pb-2 underline' target='_blank' href=''>Lien du site</a>
-      <a className='text-whiteBlue pb-2 underline' href='https://github.com/Martint1n/HousesTournament' target="_blank">Lien github frontend</a>
-      <a className='text-whiteBlue underline' href='https://github.com/Martint1n/HouseTournamentBackend' target="_blank">Lien github backend</a>
+      <a className='text-whiteBlue pb-2 underline' target='_blank' href=''>{t('projects.tournoi.websiteLink')}</a>
+      <a className='text-whiteBlue pb-2 underline' href='https://github.com/Martint1n/HousesTournament' target="_blank">{t('projects.tournoi.linkGithubFront')}</a>
+      <a className='text-whiteBlue underline' href='https://github.com/Martint1n/HouseTournamentBackend' target="_blank">{t('projects.tournoi.linkGithubBack')}</a>
     </div>
   </div>
 
-const lunetoile = <div className='w-full h-full text-center flex flex-col justify-around items-center'>
+const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
   <p className='text-whiteBlue text-3xl'>Lunétoile</p>
-  <p>Ce projet est une site
-  de précommande d'un jeu de 52 cartes
-  où chaque carte est illustrée
-  par un artiste tatoueur différent
-  utilisation de Stripe pour
-  l'achat en ligne
-  </p>
-  <p>Le site est en construction</p>
+  <p>{t('projects.lunetoile.introduction')}</p>
+  <p>{t('projects.lunetoile.design')}</p>
   <div className='flex flex-col'>
-    <a className='text-whiteBlue pb-2 underline' href='https://github.com/Martint1n/lunetoile-frontend' target="_blank">Lien github frontend</a>
-    <a className='text-whiteBlue underline' href='https://github.com/Martint1n/lunetoile-backend' target="_blank">Lien github backend</a>
+    <a className='text-whiteBlue pb-2 underline' href='https://github.com/Martint1n/lunetoile-frontend' target="_blank">{t('projects.lunetoile.linkGithubFront')}</a>
+    <a className='text-whiteBlue underline' href='https://github.com/Martint1n/lunetoile-backend' target="_blank">{t('projects.lunetoile.linkGithubBack')}</a>
   </div>
 </div>
 
-const pokemonStore= <div className='w-full h-full text-center flex flex-col justify-around items-center'>
+const pokemonStore= <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
   <p className='text-whiteBlue text-3xl'>PokémonStore</p>
-  <p className='text-whiteBlue'>Ce projet est une site
-  d'achat de produits Pokémon
-  utilisation de Stripe
-  l'achat en ligne
-  utilisation de Puppeteer pour
-  récupérer des données en ligne
-  Le site est en construction
-  </p>
+  <p className='text-whiteBlue'>{t('projects.pokemonStore.introduction')}</p>
 </div>
 return (
 <Swiper
@@ -81,7 +65,7 @@ return (
         }}
         spaceBetween={0}
         slidesPerView={1}
-        className='w-full h-1/2 border-2'
+        className='w-full h-full flex justify-center'
       >
         <SwiperSlide >{renoskem}</SwiperSlide>
         <SwiperSlide >{tournoi}</SwiperSlide>

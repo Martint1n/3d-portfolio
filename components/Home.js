@@ -100,7 +100,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 
   return (
-    <div className='flex flex-col w-screen h-custom-height justify-between bg-blue p-5'>
+    <div className='flex flex-col w-screen h-custom-height overflow-hidden justify-between bg-blue p-5'>
       <div className='flex justify-between'>
         <p className='text-whiteBlue text-2xl'>{t('welcome')}</p>
         <Popover placement={'bottom-start'} color="#F00"> 
@@ -184,13 +184,13 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
         <Contact />
       ):(
         <div className='flex flex-col h-full items-center'>
-        <p className='text-yellow w-4/5 text-center pb-10'>{t("instruction")}</p>
-        <div className='overflow-auto flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
-          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
-          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction2")}</p>
-          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction3")}</p> 
+          <p className='text-yellow w-4/5 text-center pb-10'>{t("instruction")}</p>
+          <div className='overflow-auto flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
+            <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
+            <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction2")}</p>
+            <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction3")}</p> 
+          </div>
         </div>
-      </div>
       )}
       {/* <audio ref={audioRef}>
         <source src="/laser-one-shot-1.wav" type="audio/wav" />

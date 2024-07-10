@@ -53,9 +53,11 @@ function TextCube({showBottomHalf}) {
           fontSize={0.005}
           color="#2E86AB"
         >
-          <a onClick={() => showBottomHalf(texts[index].click)} href={texts[index]?.link} target="_blank" style={{ color: texts[index].color, textDecoration: texts[index].textDecoration }}>
-            {texts[index].content}
-          </a>
+          <div onClick={() => showBottomHalf(texts[index].click)} className='h-96px'>
+            <a href={texts[index]?.link} target="_blank" style={{ color: texts[index].color, textDecoration: texts[index].textDecoration }}>
+              {texts[index].content}
+            </a>
+          </div>
         </Html>
       ))}
     </mesh>
