@@ -100,7 +100,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
 
   return (
-    <div className='flex flex-col w-screen h-custom-height overflow-hidden justify-between bg-blue p-5'>
+    <div className='flex flex-col w-screen h-custom-height overflow-hidden justify-between p-5'>
       <div className='flex justify-between'>
         <p className='text-whiteBlue text-2xl'>{t('welcome')}</p>
         <Popover placement={'bottom-start'} color="#F00"> 
