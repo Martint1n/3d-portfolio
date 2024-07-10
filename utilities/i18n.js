@@ -75,7 +75,7 @@ const resources = {
 
         },
         lunetoile: {
-          introduction: "Ce projet est une site de précommande d'un jeu de 52 cartes  où chaque carte est illustrée par un artiste tatoueur différent utilisation de Stripe pour l'achat en ligne.",
+          introduction: "Ce projet est une site de précommande d'un jeu de 52 cartes où chaque carte est illustrée par un artiste tatoueur différent utilisation de Stripe pour l'achat en ligne.",
           websiteLink: "Le site est en construction",
           linkGithubFront: "Lien github frontend",
           linkGithubBack: "Lien github backend",
@@ -104,29 +104,29 @@ const resources = {
       projects: {
         renoskem: {
           introduction: "Le projet RenoSkem est une application mobile créée avec react native dédiée à l'accompagnement des utilisateurs dans leurs projets de rénovation.",
-          linkGithubFront: "Lien github frontend",
-          linkGithubBack: "Lien github backend",
-          video: "Vidéo d'introduction",
+          linkGithubFront: "GitHubのフロントエンドのリンク",
+          linkGithubBack: "GitHubのバックエンドのリンク",
+          video: "ビデオの紹介",
         },
         tournoi: {
           introduction: "Ce projet est une site premettant l'affichage de points attribués aux participants dans le but de créer de l'activité sur Instagram",
-          design : "Design uniquement pour mobile",
-          websiteLink: "Lien du site",
-          linkGithubFront: "Lien github frontend",
-          linkGithubBack: "Lien github backend",
+          design : "スマホだけデザインです",
+          websiteLink: "ウェブサイトのリンク",
+          linkGithubFront: "GitHubのフロントエンドのリンク",
+          linkGithubBack: "GitHubのバックエンドのリンク",
 
         },
         lunetoile: {
-          introduction: "Ce projet est une site de précommande d'un jeu de 52 cartes  où chaque carte est illustrée par un artiste tatoueur différent utilisation de Stripe pour l'achat en ligne",
-          websiteLink: "Le site est en construction",
-          linkGithubFront: "Lien github frontend",
-          linkGithubBack: "Lien github backend",
+          introduction: "Ce projet est une site de précommande d'un jeu de 52 cartes où chaque carte est illustrée par un artiste tatoueur différent utilisation de Stripe pour l'achat en ligne",
+          websiteLink: "ウェブサイトを建てています",
+          linkGithubFront: "GitHubのフロントエンドのリンク",
+          linkGithubBack: "GitHubのバックエンドのリンク",
         },
         pokemonStore: {
           introduction: "Ce projet est une site d'achat de produits Pokémon utilisation de Stripe l'achat en ligne utilisation de Puppeteer pour récupérer des données en ligne",
-          websiteLink: "Le site est en construction",
-          linkGithubFront: "Lien github frontend",
-          linkGithubBack: "Lien github backend",
+          websiteLink: "ウェブサイトを建てています",
+          linkGithubFront: "GitHubのフロントエンドのリンク",
+          linkGithubBack: "GitHubのバックエンドのリンク",
         }
       }
     }
@@ -137,7 +137,7 @@ i18n
   .use(initReactI18next) // passes i18n down to react-i18next
   .init({
     resources,
-    lng: "jp", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
+    lng: "fr", // language to use, more information here: https://www.i18next.com/overview/configuration-options#languages-namespaces-resources
     // you can use the i18n.changeLanguage function to change the language manually: https://www.i18next.com/overview/api#changelanguage
     // if you're using a language detector, do not define the lng option
 

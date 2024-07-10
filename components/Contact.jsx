@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {Input, Textarea} from "@nextui-org/react";
+import { useTranslation } from 'react-i18next';
 
 function Contact() {
     const [formData, setFormData] = useState({
@@ -18,6 +19,15 @@ function Contact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post('https://3d-portfolio-backend-eta.vercel.app/users/send', formData)
+            .then((response) => {
+                alert('Message envoyé avec succès!');
+                setFormData({ name: '', email: '', message: '' });
+            })
+            .catch((error) => {
+                alert('Erreur lors de l\'envoi du message.');
+                console.error('There was an error!', error);
+            });
     }
 
     return (
