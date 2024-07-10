@@ -110,7 +110,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
           {flag}
         </Popover>
       </div>
-      <div className='lg:flex lg:w-screen'>
+      <div className='lg:flex lg:w-screen flex flex-col justify-between'>
         <div className='w-screen min-h-[40vh] self-center lg:w-1/2 lg:h-[80vh]'>
       {/* <Canvas 
         className='w-full h-screen bg-transparent absolute'
