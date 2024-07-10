@@ -23,6 +23,9 @@ module.exports = {
     extend: {
       cursor: {
         'reticle': 'url(/target-design-svgrepo-com.svg), crosshair',
+        height: {
+          'custom-height': 'calc(100vh - 56px)',
+        },
       },
     },
   },
