@@ -44,7 +44,7 @@ function Projects () {
 const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
   <p className='text-whiteBlue text-3xl'>Lunétoile</p>
   <p>{t('projects.lunetoile.introduction')}</p>
-  <p>{t('projects.lunetoile.design')}</p>
+  <p>{t('projects.lunetoile.websiteLink')}</p>
   <div className='flex flex-col'>
     <a className='text-whiteBlue pb-2 underline' href='https://github.com/Martint1n/lunetoile-frontend' target="_blank">{t('projects.lunetoile.linkGithubFront')}</a>
     <a className='text-whiteBlue underline' href='https://github.com/Martint1n/lunetoile-backend' target="_blank">{t('projects.lunetoile.linkGithubBack')}</a>
@@ -54,6 +54,7 @@ const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col just
 const pokemonStore= <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
   <p className='text-whiteBlue text-3xl'>PokémonStore</p>
   <p className='text-whiteBlue'>{t('projects.pokemonStore.introduction')}</p>
+  <p>{t('projects.lunetoile.websiteLink')}</p>
 </div>
 return (
 <Swiper
