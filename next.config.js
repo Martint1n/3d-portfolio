@@ -2,7 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [],
+    domains: ['images.pokemontcg.io', 'www.pokemon-card.com'],
   },
   async rewrites() {
     return [

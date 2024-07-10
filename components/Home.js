@@ -6,7 +6,7 @@ import Milkyway from '../models/Milkyway';
 import Millenium from '../models/Millenium';
 import SwordFishII from '../models/SwordFishII';
 import Overlay from './Overlay';
-import Laser from '../models/Laser';
+import CameraController from '../models/CameraController';
 import { OrbitControls, ScrollControls, Scroll } from '@react-three/drei';
 import { SpotLight } from 'three';
 import { useScroll } from '@react-spring/three'; 
@@ -15,6 +15,11 @@ import useSound from 'use-sound';
 import ShaderMaterial from '../models/Portal';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import TextCube from '../models/TextCube';
+import Image from 'next/image';
+import Projects from './Projects';
+import Contact from './Contact'
+import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
+import { useTranslation } from 'react-i18next';
 
 function Home() {
   const [screenScale, setScreenScale] = useState(null); // scale de Tokyo
@@ -70,14 +75,42 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   //   audioRef.current.play();
   // };
 
-  return (
-    <div className='flex flex-col w-screen h-screen justify-between border-2 bg-blue p-5'>
-      <div className='flex justify-between'>
-        <p className='text-whiteBlue text-2xl'>Bienvenue</p>
-        <div className="fi fi-fr"></div>
+  
+  const [cameraPos, setCameraPos] = useState([0, 0, 2.75])
+  const [show, setShow] = useState('default')
+  const showBottomHalf = (bottomHalf) => {
+    setShow(bottomHalf)
+  }
+  const [selectedFlag, setSelectedFlag] = useState("fi fi-fr")
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
+  
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+  const flag = (
+    <PopoverContent>
+      <div className="px-1 py-2">
+        <div onClick={() => (changeLanguage('fr'), setSelectedFlag("fi fi-fr"))} className="fi fi-fr mr-5"></div>
+        <div onClick={() => (changeLanguage('en'), setSelectedFlag("fi fi-us"))} className="fi fi-us mr-5"></div>
+        <div onClick={() => (changeLanguage('jp'), setSelectedFlag("fi fi-jp"))} className="fi fi-jp"></div>
       </div>
+    </PopoverContent>
+  );
 
-      <div className='w-[80vw] min-h-[50vh] border-2 border-yellow self-center'>
+
+  return (
+    <div className='flex flex-col w-screen h-screen justify-between bg-blue p-5'>
+      <div className='flex justify-between'>
+        <p className='text-whiteBlue text-2xl'>{t('welcome')}</p>
+        <Popover placement={'bottom-start'} color="#F00"> 
+          <PopoverTrigger>
+            <div className={selectedFlag}></div>
+          </PopoverTrigger>
+          {flag}
+        </Popover>
+      </div>
+      <div className='w-screen min-h-[40vh] self-center'>
       {/* <Canvas 
         className='w-full h-screen bg-transparent absolute'
         camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
@@ -129,10 +162,11 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
       />
       </ScrollControls>
       </Canvas>  */}
-      <Canvas camera={{ position: [0, 0, 50] }} frameloop="always">
+      <Canvas frameloop="always">
+        <CameraController cameraPos={cameraPos} />
         <ambientLight intensity={0.2} />
-        <TextCube/>
-        <SwordFishII
+        <TextCube showBottomHalf={showBottomHalf}/>
+        {/* <SwordFishII
             scale= {[0.0002, 0.0002, 0.0002]}
             position={[0, 0, 0]}
             rotation={[2, 0, 3]}
@@ -140,16 +174,26 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
             axis={new THREE.Vector3(1, 1, 0)} 
             angle={Math.PI / 2}
             orbitRadius={10}
-          />
+          /> */}
         <OrbitControls />
         </Canvas>
       </div>
-
-      <div className='flex justify-center pb-15'>
-        <p className='text-whiteBlue w-3/4 text-center'>
-        En attente d'instruction du Cube.
-        </p>
-      </div>
+      {show === 'projects' ? (
+        <Projects/> 
+      ) : show === 'contact' ? (
+        <Contact />
+      ):(
+        <div className='flex flex-col items-center'>
+        <p className='text-yellow w-4/5 text-center pb-10'>{t("instruction")}</p>
+      <div className='overflow-scroll flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
+        
+        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
+        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction2")}</p>
+        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction3")}</p>
+        
+    </div>
+    </div>
+  )}
       {/* <audio ref={audioRef}>
         <source src="/laser-one-shot-1.wav" type="audio/wav" />
       </audio>

@@ -21,22 +21,25 @@ const fragmentShader = `
     vec3 c = vec3(1.185, 0.004, 0.212);
     vec3 d = vec3(4.697, 5.138, 5.860);
 
-    return a + b * cos(6.28318 * (c * t + d));
+    vec3 colorShift = vec3(sin(t), cos(t), sin(t + cos(t)));
+
+    return a + b * cos(6.28318 * (c * t + d)) + colorShift;
   }
 
   void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 uv = (fragCoord * 2.0 - iResolution.xy) / iResolution.y;
 
-    float d = length(uv);
-    vec3 col = palette(d + time);
+    float dX = min(abs(uv.x - 0.5), abs(uv.x + 0.5));
+    float dY = min(abs(uv.y - 1.0), abs(uv.y + 1.0));
+    float d = min(dX, dY);
 
-    d = sin(d * 5.0 + time) / 5.0;
-    d = abs(d);
-    d = 0.01 / d;
+  
 
-    col *= d;
+    float edgeColor = smoothstep(0.02, 0.05, d);
+    
+    vec3 col = palette(time * 0.2);
 
-    fragColor = vec4(col, 1.0);
+    fragColor = vec4(mix(col, vec3(0.0), edgeColor), 1.0);
   }
 
   void main() {
