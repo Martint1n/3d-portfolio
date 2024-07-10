@@ -183,17 +183,15 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
       ) : show === 'contact' ? (
         <Contact />
       ):(
-        <div className='flex flex-col items-center'>
+        <div className='flex flex-col h-1/2 items-center'>
         <p className='text-yellow w-4/5 text-center pb-10'>{t("instruction")}</p>
-      <div className='overflow-scroll flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
-        
-        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
-        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction2")}</p>
-        <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction3")}</p>
-        
-    </div>
-    </div>
-  )}
+        <div className='overflow-scroll flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
+          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
+          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction2")}</p>
+          <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction3")}</p> 
+        </div>
+      </div>
+      )}
       {/* <audio ref={audioRef}>
         <source src="/laser-one-shot-1.wav" type="audio/wav" />
       </audio>
