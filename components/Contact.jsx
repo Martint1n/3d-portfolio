@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import {Input, Textarea} from "@nextui-org/react";
 import { useTranslation } from 'react-i18next';
+import axios from 'axios';
 
 function Contact() {
+    const {t} = useTranslation();
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -31,11 +33,11 @@ function Contact() {
     }
 
     return (
-        <form className='h-1/2 w-full flex flex-col justify-around items-center' onSubmit={handleSubmit}>
+        <form className='h-1/2 w-full flex flex-col justify-around items-center lg:h-full' onSubmit={handleSubmit}>
             <Input
                 isRequired
                 type="text"
-                label="name"
+                label={t("contact.name")}
                 labelPlacement="outside"
                 defaultValue=""
                 name="name"
@@ -46,7 +48,7 @@ function Contact() {
             <Input
                 isRequired
                 type="email"
-                label="Email"
+                label={t("contact.email")}
                 labelPlacement="outside"
                 defaultValue="email@email.com"
                 name="email"
@@ -56,15 +58,15 @@ function Contact() {
             />
             <Textarea
                 isRequired
-                label="Message"
+                label={t("contact.message")}
                 labelPlacement="outside"
-                placeholder="Ecrivez votre message"
+                placeholder={t("contact.writeMessage")}
                 className="max-w-xs"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
             />
-            <input type="submit" value="Envoyer" />
+            <input type="submit" value={t("contact.send")} className='text-yellow cursor-alias'/>
         </form>
     )
 }

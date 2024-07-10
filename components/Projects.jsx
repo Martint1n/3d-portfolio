@@ -10,7 +10,7 @@ function Projects () {
   const {t} = useTranslation();
   const swiperRef = React.useRef();
   const {isOpen, onOpen, onOpenChange} = useDisclosure();
-  const renoskem = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
+  const renoskem = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto lg:w-4/5'>
       <p className='text-whiteBlue text-3xl'>RenoSkem</p>
       <p className=''>{t('projects.renoskem.introduction')}</p>
       <div className='flex flex-col'>
@@ -30,7 +30,7 @@ function Projects () {
       </Modal>
     </div>
 
-  const tournoi = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
+  const tournoi = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto lg:w-4/5'>
     <p className='text-whiteBlue text-3xl'>Tournoi des maisons</p>
     <p>{t('projects.tournoi.introduction')}</p>
     <p>{t('projects.tournoi.design')}</p>
@@ -41,7 +41,7 @@ function Projects () {
     </div>
   </div>
 
-const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
+const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto lg:w-4/5'>
   <p className='text-whiteBlue text-3xl'>Lunétoile</p>
   <p>{t('projects.lunetoile.introduction')}</p>
   <p>{t('projects.lunetoile.websiteLink')}</p>
@@ -51,7 +51,7 @@ const lunetoile = <div className='w-[60vw] h-full text-center flex flex-col just
   </div>
 </div>
 
-const pokemonStore= <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto'>
+const pokemonStore= <div className='w-[60vw] h-full text-center flex flex-col justify-around m-auto lg:w-4/5'>
   <p className='text-whiteBlue text-3xl'>PokémonStore</p>
   <p className='text-whiteBlue'>{t('projects.pokemonStore.introduction')}</p>
   <p>{t('projects.lunetoile.websiteLink')}</p>
@@ -66,7 +66,7 @@ return (
         }}
         spaceBetween={0}
         slidesPerView={1}
-        className='w-full h-full flex justify-center'
+        className='w-full h-full flex justify-center lg:w-4/5'
       >
         <SwiperSlide >{renoskem}</SwiperSlide>
         <SwiperSlide >{tournoi}</SwiperSlide>

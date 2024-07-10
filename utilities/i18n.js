@@ -44,7 +44,14 @@ const resources = {
           linkGithubFront: "Frontend github link",
           linkGithubBack: "Backend github link",
         }
-      }
+      },
+      contact: {
+        name: 'name',
+        email: 'email',
+        message: 'message',
+        writeMessage: "Write your message",
+        send: "Send"
+      },
     }
   },
   fr: {
@@ -86,7 +93,14 @@ const resources = {
           linkGithubFront: "Lien github frontend",
           linkGithubBack: "Lien github backend",
         }
-      }
+      },
+      contact: {
+        name: 'nom',
+        email: 'email',
+        message: 'message',
+        writeMessage: "Ecrivez votre message",
+        send: "Envoyer"
+      },
     }
   },
   jp: {
@@ -128,7 +142,14 @@ const resources = {
           linkGithubFront: "GitHubのフロントエンドのリンク",
           linkGithubBack: "GitHubのバックエンドのリンク",
         }
-      }
+      },
+      contact: {
+        name: '名前',
+        email: 'メール',
+        message: 'メッセージ',
+        writeMessage: "メッセージを書いてください",
+        send: "送信する"
+      },
     }
   }
 };
