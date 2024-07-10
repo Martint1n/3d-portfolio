@@ -183,7 +183,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
       ) : show === 'contact' ? (
         <Contact />
       ):(
-        <div className='flex flex-col h-1/2 items-center'>
+        <div className='flex flex-col h-full items-center'>
         <p className='text-yellow w-4/5 text-center pb-10'>{t("instruction")}</p>
         <div className='overflow-auto flex flex-col w-screen h-[40vh] items-center self-center mt-5'>
           <p className='text-whiteBlue w-4/5 text-center pb-5'>{t("introduction")}</p>
