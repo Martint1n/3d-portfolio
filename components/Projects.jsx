@@ -15,7 +15,7 @@ function Projects () {
       <p className=''>{t('projects.renoskem.introduction')}</p>
       <div className='flex flex-col'>
         <a className='text-yellow pb-2 underline' href='https://github.com/craftByElla/RenoSkem_Frontend' target="_blank">{t('projects.renoskem.linkGithubFront')}</a>
-        <a className='text-yellow underline' href='https://github.com/craftByElla/RenoSkem_Backend' target="_blank">{t('projects.renoskem.linkGithubFront')}</a>
+        <a className='text-yellow underline' href='https://github.com/craftByElla/RenoSkem_Backend' target="_blank">{t('projects.renoskem.linkGithubBack')}</a>
       </div>
       
       <p className='text-yellow underline' onClick={onOpen}>{t('projects.renoskem.video')}</p>
