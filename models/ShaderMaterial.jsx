@@ -16,14 +16,18 @@ const fragmentShader = `
   varying vec2 vUv;
 
   vec3 palette(float t) {
-    vec3 a = vec3(0.413, 0.424, 0.530);
-    vec3 b = vec3(0.869, 0.326, 0.943);
-    vec3 c = vec3(1.185, 0.004, 0.212);
-    vec3 d = vec3(4.697, 5.138, 5.860);
+    vec3 a = vec3(0.6, 0.7, 0.9);
+    vec3 b = vec3(0.9, 0.5, 0.8);
+    vec3 c = vec3(0.6, 1.0, 0.6);
+    vec3 d = vec3(1.0, 0.9, 0.5);
 
-    vec3 colorShift = vec3(sin(t), cos(t), sin(t + cos(t)));
+    float sinT = sin(t);
+    float cosT = cos(t);
 
-    return a + b * cos(6.28318 * (c * t + d)) + colorShift;
+    vec3 color1 = mix(a, b, sinT);
+    vec3 color2 = mix(c, d, cosT);
+
+    return mix(color1, color2, 0.5 + 0.5 * sin(t * 0.3));
   }
 
   void mainImage(out vec4 fragColor, in vec2 fragCoord) {
@@ -33,13 +37,11 @@ const fragmentShader = `
     float dY = min(abs(uv.y - 1.0), abs(uv.y + 1.0));
     float d = min(dX, dY);
 
-  
-
     float edgeColor = smoothstep(0.02, 0.05, d);
-    
+
     vec3 col = palette(time * 0.2);
 
-    fragColor = vec4(mix(col, vec3(0.0), edgeColor), 1.0);
+    fragColor = vec4(mix(col, vec3(0.9, 0.9, 0.9), edgeColor), 1.0);
   }
 
   void main() {

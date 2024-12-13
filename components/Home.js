@@ -12,14 +12,19 @@ import { SpotLight } from 'three';
 import { useScroll } from '@react-spring/three'; 
 import * as THREE from 'three';
 import useSound from 'use-sound';
-import ShaderMaterial from '../models/Portal';
+import ShaderMaterial from '../models/ShaderMaterial';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import TextCube from '../models/TextCube';
+import Cube from '../models/Cube';
 import Image from 'next/image';
 import Projects from './Projects';
 import Contact from './Contact'
-import {Popover, PopoverTrigger, PopoverContent} from "@nextui-org/react";
 import { useTranslation } from 'react-i18next';
+import Header from './Header';
+import { SvgCss, SvgHtml, SvgExpress, SvgJs, SvgGit, SvgGithub, SvgMongoDB, SvgNext, SvgReact, SvgRedux, SvgTailwind, SvgTypescript } from './icons/Skillsvgicons';
+import StackCard from './StackCard';
+import { BorderBeam } from "../src/components/components/ui/border-beam.tsx";
+import Experiences from './Experiences.jsx';
+import ExperiencesCard from './ExperiencesCard.jsx';
 
 function Home() {
   const [screenScale, setScreenScale] = useState(null); // scale de Tokyo
@@ -45,6 +50,11 @@ function Home() {
   //   }
   //   adjustTokyoForScreenSize();
   // }, [])
+
+
+
+
+const svgList = [<SvgCss color1="#a7d8ff" color2="#f4f4f4"/>, <SvgHtml color1="#ffb3a7" color2="#f4f4f4"/>, <SvgJs/>, <SvgExpress/>, <SvgGit/>, <SvgGithub/>, <SvgMongoDB/>, <SvgNext/>, <SvgReact/>, <SvgRedux/>, <SvgTailwind/>, <SvgTypescript/>]
 
   const resizeCamera = () => {
     // ajouter un temps de chargement au clic pour charger les éléments (millenium pour le moment)
@@ -76,126 +86,57 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   // };
 
   
-  const [cameraPos, setCameraPos] = useState([0, 0, 2.75])
+  const [cameraPos, setCameraPos] = useState([0, 0, 3])
   const [show, setShow] = useState('default')
   const showBottomHalf = (bottomHalf) => {
     setShow(bottomHalf)
   }
-  const [selectedFlag, setSelectedFlag] = useState("fi fi-fr")
-  const { t } = useTranslation();
   const { i18n } = useTranslation();
   
-  const changeLanguage = (lng) => {
+  const changeLanguage = (lng, flag) => {
     i18n.changeLanguage(lng);
+    return flag
   };
-  const flag = (
-    <PopoverContent>
-      <div className="px-1 py-2">
-        <div onClick={() => (changeLanguage('fr'), setSelectedFlag("fi fi-fr"))} className="fi fi-fr mr-5"></div>
-        <div onClick={() => (changeLanguage('en'), setSelectedFlag("fi fi-us"))} className="fi fi-us mr-5"></div>
-        <div onClick={() => (changeLanguage('jp'), setSelectedFlag("fi fi-jp"))} className="fi fi-jp"></div>
-      </div>
-    </PopoverContent>
-  );
 
 
   return (
-    <div className='flex flex-col w-screen h-custom-height overflow-hidden justify-between p-5'>
-      <div className='flex justify-between'>
-        <p className='text-whiteBlue text-2xl'>{t('welcome')}</p>
-        <Popover placement={'bottom-start'} color="#F00"> 
-          <PopoverTrigger>
-            <div className={selectedFlag}></div>
-          </PopoverTrigger>
-          {flag}
-        </Popover>
+    <div className='flex flex-col w-screen h-custom-height p-5'>
+      
+      <Header changeLanguage={changeLanguage}/>
+      <div className='flex w-screen flex-col items-center'>
+        <div className='relative flex justify-center items-center w-screen h-[100vh] self-center'>
+          <div className='z-10 absolute'>Bonjour, ici <br/> <span className='text-3xl'>Martin Guilbert </span><br/> <span className='text-yellow'>Développeur Fullstack</span></div>
+            <Canvas frameloop="always" >
+              <CameraController cameraPos={cameraPos} />
+              <ambientLight intensity={1.0} />
+              <Cube />
+          {/* <SwordFishII
+              scale= {[0.0002, 0.0002, 0.0002]}
+              position={[0, 0, 0]}
+              rotation={[2, 0, 3]}
+              pivotPoint = {pivotPoint}
+              axis={new THREE.Vector3(1, 1, 0)} 
+              angle={Math.PI / 2}
+              orbitRadius={10}
+            /> */}
+          </Canvas>
+        </div>
       </div>
-      <div className='lg:flex lg:w-screen lg:flex-row flex-col justify-between'>
-        <div className='w-screen min-h-[40vh] self-center lg:w-1/2 lg:h-[80vh]'>
-      {/* <Canvas 
-        className='w-full h-screen bg-transparent absolute'
-        camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
-      >
-      <Suspense fallback={<Loader />}> //loading screen while waiting for 3D model
-        <group>
-          <primitive
-            object={spotlight}
-            position={[0, 5, -70]}
-            angle={4.1}
-            intensity={10000}
-            penumbra={0.5}
-          />
-          <primitive object={spotlight.target} position={[0, 0, -120]} />
-        </group>
-        <group>
-          <primitive
-            object={spotlightTowardUser}
-            position={[0, 5, -70]}
-            angle={Math.PI/2}
-            intensity={10000}
-            penumbra={0.1}
-          />
-          <primitive object={spotlightTowardUser.target} position={[0, 0, 120]} />
-        </group>
-        <OrbitControls />
-      </Suspense>
-      <Milkyway 
-        scale= {[100, 100, 100]}
-        position={[0, 2, 1]}
-      />
-        <SwordFishII
-          scale= {[0.0009, 0.0009, 0.0009]}
-          position={[-20, 10, -20]}
-          rotation={[2, 0, 3]}
-          pivotPoint = {pivotPoint}
-          axis={new THREE.Vector3(1, 1, 0)} 
-          angle={Math.PI / 2}
-          orbitRadius={60}
-      />
-      <ScrollControls pages={3} damping={0.25}>
-        { milleniumFly && <Millenium /> }
 
-      <Tokyo 
-        scale= {screenScale}
-        position={screenPosition}
-        rotation={rotation}
-        resizeCamera = {resizeCamera}
-      />
-      </ScrollControls>
-      </Canvas>  */}
-      <Canvas frameloop="always">
-        <CameraController cameraPos={cameraPos} />
-        <ambientLight intensity={0.2} />
-        <TextCube showBottomHalf={showBottomHalf}/>
-        {/* <SwordFishII
-            scale= {[0.0002, 0.0002, 0.0002]}
-            position={[0, 0, 0]}
-            rotation={[2, 0, 3]}
-            pivotPoint = {pivotPoint}
-            axis={new THREE.Vector3(1, 1, 0)} 
-            angle={Math.PI / 2}
-            orbitRadius={10}
-          /> */}
-        <OrbitControls />
-        </Canvas>
+      <div className="relative w-[90vw] flex flex-wrap self-center">
+        { svgList.map((svg, i) => <StackCard key={i} svgIcon={svg} isOdd={i % 2 !== 0} />) }
+        <BorderBeam />
       </div>
-      {show === 'projects' ? (
-        <div className='lg:w-1/2'>
-        <Projects/> 
-        </div>
-      ) : show === 'contact' ? (
-        <Contact />
-      ):(
-        <div className='flex flex-col h-full items-center lg:w-1/2 lg:justify-around'>
-          <p className='text-yellow w-4/5 text-center pb-10 lg:w-4/5'>{t("instruction")}</p>
-          <div className='overflow-scroll flex flex-col w-screen h-[40vh] items-center self-center mt-5 lg:w-4/5 lg:justify-between'>
-            <p className='text-whiteBlue w-4/5 text-center pb-5 '>{t("introduction")}</p>
-            <p className='text-whiteBlue w-4/5 text-center pb-5 '>{t("introduction2")}</p>
-            <p className='text-whiteBlue w-4/5 text-center pb-5 '>{t("introduction3")}</p> 
-          </div>
-        </div>
-      )}
+
+      <div className='flex w-[90vw] mt-5'>
+        <div className='w-1/2 text-center'>EXPERIENCES</div>
+        <div className='w-1/2 text-center'>ECOLE</div>
       </div>
+
+      <ExperiencesCard />
+
+
+          
       {/* <audio ref={audioRef}>
         <source src="/laser-one-shot-1.wav" type="audio/wav" />
       </audio>
@@ -258,6 +199,7 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
           <ShaderMaterial />
         </Canvas>
       </div> */}
+
     </div>
   );
 }
