@@ -1,4 +1,4 @@
-const {nextui} = require("@nextui-org/react");
+const {nextui, colors} = require("@nextui-org/react");
 
 /** @type {import('tailwindcss').Config} */
 
@@ -15,12 +15,24 @@ module.exports = {
   ],
   theme: {
   	colors: {
-  		blue: '#011627',
+  		blue: '#a7d8ff',
   		lightBlue: '#2E86AB',
-  		yellow: '#fff5a0',
   		whiteBlue: '#E3F2FD',
-  		transparent: 'rgba( 0, 0, 0, 0 )'
-  	},
+  		transparent: 'rgba( 0, 0, 0, 0 )',
+		white: "#f4f4f4",
+		black: "#1e1e2f",
+		blueCSS: "#a7d8ff",
+		orangeHTML: "#ffb3a7",
+		yellowJs: "#ffd699",
+		greenMongo: "#9eed9d",
+		purpleRedux: "#c88eff",
+		neonBlue: "#00bcd4",
+		neonOrange: "#ff7f00",
+		pastelRed: "#ff7a94",
+		neonRed: "#ff4f6c",
+		neonYellow: "#faf200",
+		neonPurple: "#9b4dff",
+	},
   	extend: {
   		cursor: {
   			reticle: 'url(/target-design-svgrepo-com.svg), crosshair'
@@ -41,6 +53,14 @@ module.exports = {
   	}
   },
   darkMode: ["class"],
-  plugins: [nextui()],
+  plugins: [nextui({
+	themes: {
+		dark: {
+			colors: {
+				background: '#1e1e2f',
+			}
+		},
+	}
+  })],
 }
 

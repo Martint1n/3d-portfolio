@@ -1,23 +1,8 @@
 import { Suspense, useState, useEffect, useMemo, useRef } from 'react';
 import { Canvas, useThree } from '@react-three/fiber';
-import Loader from '../components/Loader';
-import Tokyo from '../models/Tokyo';
-import Milkyway from '../models/Milkyway';
-import Millenium from '../models/Millenium';
-import SwordFishII from '../models/SwordFishII';
-import Overlay from './Overlay';
 import CameraController from '../models/CameraController';
-import { OrbitControls, ScrollControls, Scroll } from '@react-three/drei';
-import { SpotLight } from 'three';
-import { useScroll } from '@react-spring/three'; 
-import * as THREE from 'three';
-import useSound from 'use-sound';
-import ShaderMaterial from '../models/ShaderMaterial';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
 import Cube from '../models/Cube';
-import Image from 'next/image';
-import Projects from './Projects';
-import Contact from './Contact'
 import { useTranslation } from 'react-i18next';
 import Header from './Header';
 import { SvgCss, SvgHtml, SvgExpress, SvgJs, SvgGit, SvgGithub, SvgMongoDB, SvgNext, SvgReact, SvgRedux, SvgTailwind, SvgTypescript } from './icons/Skillsvgicons';
@@ -25,72 +10,144 @@ import StackCard from './StackCard';
 import { BorderBeam } from "../src/components/components/ui/border-beam.tsx";
 import Experiences from './Experiences.jsx';
 import ExperiencesCard from './ExperiencesCard.jsx';
+import gsap from 'gsap';
+import { useGSAP } from "@gsap/react"
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function Home() {
-  const [screenScale, setScreenScale] = useState(null); // scale de Tokyo
-  const [screenPosition, setScreenPostion] = useState([0, 0, 0]); // position de Tokyo
-  const [rotation, setRotation] = useState([0.1, 4.7, 0]); // Rotation de Tokyo
-  const [xRotationSwordFish, setXRotationSwordFish] = useState(2);
-  const [yRotationSwordFish, setYRotationSwordFish] = useState(0);
-  const [zRotationSwordFish, setZRotationSwordFish] = useState(3);
-  const totalRotationSwordFish = [-Math.PI / xRotationSwordFish, yRotationSwordFish, zRotationSwordFish]
-  const spotlight = useMemo(() => new SpotLight('#fff'), []);
-  const spotlightTowardUser = useMemo(() => new SpotLight('#fff'), []);
-  const [count, setCount] = useState(0)
-  const pivotPoint = new THREE.Vector3(0, 0, 0);
-  const [playSound] = useSound('laser-one-shot-1.wav');
 
-  // useEffect(() => { // window nécessite un useEffect avec NextJS
-  //   function adjustTokyoForScreenSize() {
-  //     if (window.innerWidth < 768) {
-  //       setScreenScale([0.9, 0.9, 0.9]);
-  //     } else {
-  //       setScreenScale([1, 1, 1]);
-  //     }
-  //   }
-  //   adjustTokyoForScreenSize();
-  // }, [])
-
-
-
-
-const svgList = [<SvgCss color1="#a7d8ff" color2="#f4f4f4"/>, <SvgHtml color1="#ffb3a7" color2="#f4f4f4"/>, <SvgJs/>, <SvgExpress/>, <SvgGit/>, <SvgGithub/>, <SvgMongoDB/>, <SvgNext/>, <SvgReact/>, <SvgRedux/>, <SvgTailwind/>, <SvgTypescript/>]
-
-  const resizeCamera = () => {
-    // ajouter un temps de chargement au clic pour charger les éléments (millenium pour le moment)
-    setScreenPostion([0, -6, -43])
-  }
-
-let milleniumFly = false;
-if(screenPosition[2] < 0) {
-  milleniumFly = true;
-} else {
-  milleniumFly = false;
+const colorTheme = {
+  white: "#f4f4f4",
+  black: "#1e1e2f",
+  blueCSS: "#a7d8ff",
+  orangeHTML: "#ffb3a7",
+  yellowJs: "#fff5a0",
+  greenMongo: "#9eed9d",
+  purpleRedux: "#c8a2d8",
+  neonBlue: "#00bcd4",
+  neonOrange: "#ff7f00",
+  pastelRed: "#ff7a94",
+  neonRed: "#ff4f6c",
+  neonYellow: "#faf200",
+  neonPurple: "#9b4dff",
 }
 
-const increaseCount = () => {
-  console.log('click')
-  setCount(count + 1)
-}
-const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+const cubeRef = useRef();
+const tl = useRef();
+const textRef = useRef();
+const pingRef = useRef();
+const pongRef = useRef();
 
-  // Fonction pour gérer le clic de la souris
-  // const handleClick = (event) => {
-  //   const { clientX, clientY } = event;
-  //   setMousePosition({x: clientX, y: clientY})
-  // };
+
+gsap.registerPlugin(useGSAP)
+gsap.registerPlugin(ScrollTrigger)
+
+
+useGSAP(() => {
+
+  const pongRefRect = pongRef.current.getBoundingClientRect();
+  const textRefRect = textRef.current.getBoundingClientRect();
+  const pongWidth = pongRefRect.width;
+  const textWidth = textRefRect.width
   
-  // const audioRef = useRef();
-  // const handlePlay = () => {
-  //   audioRef.current.play();
-  // };
+  tl.current = gsap
+  .timeline({
+    scrollTrigger: {
+      trigger: textRef.current,
+      start: '10 top',
+      end: '100% 100%',
+      markers: true,
+      scrub: true,
+    }
+  })
+
+  .to(cubeRef.current, {
+      x: textWidth - 3 * pongWidth,
+      y: "50vh",
+      ease: "poweri.in",
+      rotation: 360,
+      borderColor: colorTheme.neonRed
+    }, 0)
+    .to(cubeRef.current, {
+      x: 0,
+      y: "100vh",
+      ease: "poweri.in",
+      borderColor: colorTheme.neonYellow,
+      borderRadius: "100%",
+    }, 1)
+    .to(cubeRef.current, {
+      x: textWidth - 3 * pongWidth,
+      y: "150vh",
+      borderColor: colorTheme.neonBlue,
+    }, 2)
+    .to(cubeRef.current, {
+      x: 0,
+      y: "200vh",
+      borderRadius: "0%",
+      borderColor: colorTheme.neonOrange,
+    }, 3)
+
+    .to(pingRef.current, {
+      x: 0,
+      y: "50vh",
+      borderColor: colorTheme.neonPurple,
+    }, 0)
+    .to(pingRef.current, {
+      x: 0,
+      y: "100vh",
+      ease: "back.in(4)"
+    }, 1)
+    .to(pingRef.current, {
+      x: 0,
+      y: "200vh",
+      ease: "slow(0.7, 0.7, false)",
+    }, 3)
+
+    .to(pongRef.current, {
+      x: 0,
+      y: "50vh",
+      ease: "slow(0.7, 0.7, false)",
+      borderColor: colorTheme.neonPurple,
+    }, 0)
+    .to(pongRef.current, {
+      x: 0,
+      y: "150vh",
+      ease: "back.in(4)"
+    }, 1)
+
+}, {scope: cubeRef});
+
+const svgList = [
+  <SvgCss color1={colorTheme.blueCSS} color2={colorTheme.black}/>, 
+  <SvgHtml color1={colorTheme.orangeHTML} color2={colorTheme.black}/>, 
+  <SvgJs color1={colorTheme.yellowJs} color2={colorTheme.black}/>, 
+  <SvgExpress color2={colorTheme.white}/>, 
+  <SvgGit color1={colorTheme.orangeHTML}/>, 
+  <SvgGithub/>, 
+  <SvgMongoDB color1={colorTheme.greenMongo}/>, 
+  <SvgNext/>, 
+  <SvgReact color1={colorTheme.blueCSS}/>, 
+  <SvgRedux color1={colorTheme.purpleRedux}/>, 
+  <SvgTailwind color1={colorTheme.blueCSS}/>, 
+  <SvgTypescript color1={colorTheme.blueCSS} color2={colorTheme.black}/>
+];
 
   
-  const [cameraPos, setCameraPos] = useState([0, 0, 3])
-  const [show, setShow] = useState('default')
-  const showBottomHalf = (bottomHalf) => {
-    setShow(bottomHalf)
+  const [cameraPos, setCameraPos] = useState([2, 0, 4])
+  const [hoverStates, setHovereStates] = useState({
+    hover1: false,
+    hover2: false,
+    hover3: false,
+    hover4: false,
+  })
+
+  const changeIsHovered = (i) => {
+    setHovereStates(prevStates => ({
+      ...prevStates,
+      [`hover${i}`]: !hoverStates[`hover${i}`],
+    }))
   }
+ 
   const { i18n } = useTranslation();
   
   const changeLanguage = (lng, flag) => {
@@ -98,107 +155,67 @@ const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     return flag
   };
 
+  const experiencesTable = [
+    {id: 1, title: "pixiesVS", app: "mobile app", stacks: [<SvgHtml color1={colorTheme.orangeHTML} color2={colorTheme.black} />, <SvgTailwind color1={colorTheme.blueCSS}/>, <SvgReact color1={colorTheme.blueCSS}/>, <SvgMongoDB color1={colorTheme.greenMongo}/>], url: "", alt: "pixiesVS app", movement: "100%", isHovered: hoverStates.hover1},
+    {id: 2, title: "Lunetoile", app: "web app", stacks: [<SvgHtml color1={colorTheme.orangeHTML} color2={colorTheme.black}/>, <SvgTailwind color1={colorTheme.blueCSS}/>, <SvgReact color1={colorTheme.blueCSS}/>, <SvgExpress color2={colorTheme.white}/>, <SvgMongoDB color1={colorTheme.greenMongo}/>], url: "/lunetoile_home.png", alt: "lunetoile website", movement: "-100%", isHovered: hoverStates.hover2},
+    {id: 3, title: "house-tournament", app: "web app", stacks: [<SvgHtml color1={colorTheme.orangeHTML} color2={colorTheme.black}/>, <SvgTailwind color1={colorTheme.blueCSS}/>, <SvgReact color1={colorTheme.blueCSS}/>, <SvgExpress color2={colorTheme.white}/>, <SvgMongoDB color1={colorTheme.greenMongo}/>], url: "", alt: "house-tournament website", movement: "100%",isHovered: hoverStates.hover3},
+    {id: 4, title: "RenoSkem", app: "mobile app", stacks: [<SvgHtml color1={colorTheme.orangeHTML} color2={colorTheme.black}/>, <SvgCss color1={colorTheme.blueCSS}/>, <SvgReact color1={colorTheme.blueCSS}/>, <SvgRedux color1={colorTheme.purpleRedux}/>, <SvgExpress color2={colorTheme.white}/>, <SvgMongoDB color1={colorTheme.greenMongo}/>], video: "/RenoSkem_Finale.mp4", movement: "-100%", isHovered: hoverStates.hover4},
+  ]
+
+    const experiences = experiencesTable.map((experience, i) => {
+      return (
+        <ExperiencesCard 
+          key={experience.id} 
+          title={experience.title} 
+          app={experience.app} 
+          stacks={experience.stacks} 
+          photo={experience.url} 
+          video={experience.video} 
+          alt={experience.alt}
+          movement={experience.movement} 
+          isOdd={i % 2 !== 0} 
+          isHovered={experience.isHovered} 
+          onMouseEnter={() => changeIsHovered(experience.id)} 
+          onMouseLeave={() => changeIsHovered(experience.id)}/>
+      )
+    })
 
   return (
-    <div className='flex flex-col w-screen h-custom-height p-5'>
+    <div ref={textRef} className='flex flex-col w-screen'>
       
       <Header changeLanguage={changeLanguage}/>
-      <div className='flex w-screen flex-col items-center'>
-        <div className='relative flex justify-center items-center w-screen h-[100vh] self-center'>
-          <div className='z-10 absolute'>Bonjour, ici <br/> <span className='text-3xl'>Martin Guilbert </span><br/> <span className='text-yellow'>Développeur Fullstack</span></div>
-            <Canvas frameloop="always" >
-              <CameraController cameraPos={cameraPos} />
-              <ambientLight intensity={1.0} />
-              <Cube />
-          {/* <SwordFishII
-              scale= {[0.0002, 0.0002, 0.0002]}
-              position={[0, 0, 0]}
-              rotation={[2, 0, 3]}
-              pivotPoint = {pivotPoint}
-              axis={new THREE.Vector3(1, 1, 0)} 
-              angle={Math.PI / 2}
-              orbitRadius={10}
-            /> */}
+
+        {/*<div className=' flex w-full h-full border-2'>
+          <div className='w-1/10 min-h-[10%] border-8'></div>
+          <Canvas frameloop="always" >
+            <CameraController cameraPos={cameraPos} />
+            <ambientLight intensity={1.0} />
+            <Cube ref={cubeRef} />
           </Canvas>
-        </div>
+        </div> */}
+      <div className='min-h-screen min-w-screen flex items-center'>
+          <div ref={pingRef} className='w-[10px] h-[50px] border-8 border-black rounded-tr-lg rounded-br-lg'></div>
+          <div ref={cubeRef} className='w-[10px] h-[10px] border-8 border-black'></div>
+          <div ref={pongRef} className='w-[10px] h-[50px] border-8 ml-auto border-black rounded rounded-tl-lg rounded-bl-lg'></div>
       </div>
 
-      <div className="relative w-[90vw] flex flex-wrap self-center">
+      <div className='text-center text-7xl'>Bonjour, ici <br/> 
+        <span className='text-3xl text-9xl'>Martin Guilbert </span><br/> 
+        <span className='text-yellow text-7xl'>Développeur Fullstack</span>
+      </div>
+      <div className=" w-[90vw] flex flex-wrap self-center justify-center">
         { svgList.map((svg, i) => <StackCard key={i} svgIcon={svg} isOdd={i % 2 !== 0} />) }
         <BorderBeam />
       </div>
 
       <div className='flex w-[90vw] mt-5'>
-        <div className='w-1/2 text-center'>EXPERIENCES</div>
+        <div className='test w-1/2 text-center'>EXPERIENCES</div>
         <div className='w-1/2 text-center'>ECOLE</div>
       </div>
 
-      <ExperiencesCard />
-
-
-          
-      {/* <audio ref={audioRef}>
-        <source src="/laser-one-shot-1.wav" type="audio/wav" />
-      </audio>
-      <Canvas 
-        className='w-full h-screen bg-transparent absolute'
-        camera={{near: 0.1, far: 1000,}} // les éléments entre 0.1 et 1000 seront affichés
-      >
-      <Suspense fallback={<Loader />}> //loading screen while waiting for 3D model
-        <group>
-          <primitive
-            object={spotlight}
-            position={[0, 5, -70]}
-            angle={4.1}
-            intensity={10000}
-            penumbra={0.5}
-          />
-          <primitive object={spotlight.target} position={[0, 0, -120]} />
-        </group>
-        <group>
-          <primitive
-            object={spotlightTowardUser}
-            position={[0, 5, -70]}
-            angle={Math.PI/2}
-            intensity={10000}
-            penumbra={0.1}
-          />
-          <primitive object={spotlightTowardUser.target} position={[0, 0, 120]} />
-        </group>
-        <OrbitControls />
-      </Suspense>
-      <Milkyway 
-        scale= {[100, 100, 100]}
-        position={[0, 2, 1]}
-      />
-        <SwordFishII
-          scale= {[0.0009, 0.0009, 0.0009]}
-          position={[-20, 10, -20]}
-          rotation={[2, 0, 3]}
-          pivotPoint = {pivotPoint}
-          axis={new THREE.Vector3(1, 1, 0)} 
-          angle={Math.PI / 2}
-          orbitRadius={60}
-      />
-      <ScrollControls pages={3} damping={0.25}>
-        { milleniumFly && <Millenium /> }
-
-      <Tokyo 
-        scale= {screenScale}
-        position={screenPosition}
-        rotation={rotation}
-        resizeCamera = {resizeCamera}
-      />
-      </ScrollControls>
-      <Laser count={count} mousePosition={mousePosition}/>
-      </Canvas> */}
-      {/* <div>
-        <Canvas camera={{ position: [0, 0, 10] }}>
-        <ambientLight intensity={0.5} />
-        <circleGeometry args={[1, 64]} />
-          <ShaderMaterial />
-        </Canvas>
-      </div> */}
+      <div className='w-[90vw] flex flex-col self-center'>
+        { experiences }
+      </div>
 
     </div>
   );

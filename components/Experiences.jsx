@@ -2,7 +2,7 @@ import React from 'react'
 
 function Experiences() {
     return (
-        <div className='flex w-[90vw] h-[100vh]'>
+        <div className='flex w-[100vw] h-[100vh]'>
         </div>
 
     )

@@ -1248,7 +1248,7 @@
     "@nextui-org/react-rsc-utils" "2.1.1"
     "@nextui-org/shared-utils" "2.1.1"
 
-"@nextui-org/react@^2.4.2":
+"@nextui-org/react@^2.6.8":
   version "2.6.8"
   resolved "https://registry.yarnpkg.com/@nextui-org/react/-/react-2.6.8.tgz#6243beba35f0ccce1f3e4c4e23c27d39ce3b35bb"
   integrity sha512-w6skiTItbrzjvHl+v4bHCYNkPjPpFz0UPM/s4vZZmaky6sxihguq+mdCcSe/qkXdhmSn7b+aY9E0ygQaMvibvw==
