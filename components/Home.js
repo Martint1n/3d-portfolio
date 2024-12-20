@@ -64,28 +64,28 @@ useGSAP(() => {
   .to(cubeRef.current, {
       x: textWidth - 3 * pongWidth,
       y: "50vh",
-      ease: "poweri.in",
+      ease: "power2.inOut",
       rotation: 360,
-      borderColor: colorTheme.neonRed
-    }, 0)
+      borderColor: colorTheme.neonRed,
+    })
     .to(cubeRef.current, {
       x: 0,
       y: "100vh",
-      ease: "poweri.in",
+      ease: "power2.inOut",
       borderColor: colorTheme.neonYellow,
       borderRadius: "100%",
-    }, 1)
+    })
     .to(cubeRef.current, {
       x: textWidth - 3 * pongWidth,
       y: "150vh",
       borderColor: colorTheme.neonBlue,
-    }, 2)
+    })
     .to(cubeRef.current, {
       x: 0,
       y: "200vh",
       borderRadius: "0%",
       borderColor: colorTheme.neonOrange,
-    }, 3)
+    })
 
     .to(pingRef.current, {
       x: 0,
@@ -95,13 +95,12 @@ useGSAP(() => {
     .to(pingRef.current, {
       x: 0,
       y: "100vh",
-      ease: "back.in(4)"
-    }, 1)
+      ease: "back.in(4)",
+    }, 0.4)
     .to(pingRef.current, {
       x: 0,
       y: "200vh",
-      ease: "slow(0.7, 0.7, false)",
-    }, 3)
+    }, 1.5) 
 
     .to(pongRef.current, {
       x: 0,
@@ -113,7 +112,7 @@ useGSAP(() => {
       x: 0,
       y: "150vh",
       ease: "back.in(4)"
-    }, 1)
+    }, 0.8)
 
 }, {scope: cubeRef});
 
