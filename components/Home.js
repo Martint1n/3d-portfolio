@@ -12,7 +12,7 @@ import Experiences from './Experiences.jsx';
 import ExperiencesCard from './ExperiencesCard.jsx';
 import gsap from 'gsap';
 import { useGSAP } from "@gsap/react"
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 function Home() {
 
@@ -199,11 +199,11 @@ const svgList = [
           <div ref={pongRef} className='w-[10px] h-[50px] border-8 ml-auto border-black rounded rounded-tl-lg rounded-bl-lg'></div>
       </div>
 
-      <div className='text-center text-7xl'>Bonjour, ici <br/> 
-        <span className='text-3xl text-9xl'>Martin Guilbert </span><br/> 
-        <span className='text-yellow text-7xl'>Développeur Fullstack</span>
+      <div className='text-center text-5xl'>Bonjour, ici <br/> 
+        <span className='text-3xl text-7xl'>Martin Guilbert </span><br/> 
+        <span className='text-yellow text-6xl'>Développeur Fullstack</span>
       </div>
-      <div className=" w-[90vw] flex flex-wrap self-center justify-center">
+      <div className=" border-2 w-[90vw] flex flex-wrap self-center justify-center">
         { svgList.map((svg, i) => <StackCard key={i} svgIcon={svg} isOdd={i % 2 !== 0} />) }
         <BorderBeam />
       </div>

@@ -40,7 +40,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
         isOdd ? (
         <div key={key} ref={container} className='w-1/2 min-h-[20vh] mt-5 self-end ' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             {!isHovered &&                 
-                <div className='w-full h-full overflow-hidden relative border-2 border-purpleRedux rounded-3xl'>
+                <div className='w-full h-full overflow-hidden border-2 border-purpleRedux rounded-3xl'>
                     <Image src={photo} fill={true} alt={alt}/> 
                 </div>
                 }
@@ -63,7 +63,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
 (
     <div ref={container} className='w-1/2 min-h-[20vh] mt-5' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         {!isHovered &&                 
-                <div className='w-full h-full overflow-hidden relative border-2 border-yellowJs rounded-3xl'>
+                <div className='w-full h-full overflow-hidden border-2 border-yellowJs rounded-3xl'>
                     <Image src={photo} fill={true}/> 
                 </div>
                 }

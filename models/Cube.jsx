@@ -2,9 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import * as THREE from 'three'
 import ShaderMaterial from './ShaderMaterial'
 import { extend, useFrame } from '@react-three/fiber';
-import gsap from 'gsap';
-import { useGSAP } from "@gsap/react"
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
 
 function Cube() {
     const cubeRef = useRef();
