@@ -12,3 +12,5 @@ function Loader() {
 }
 
 export default Loader
+
+//credits : roy gamingArtBySJ sur imgur.com, origin Isle Sagr_Ragr sur reddit ds1 bukkakebandit sur imgur musique artur aravidi sur free music archive.org

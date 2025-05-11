@@ -35,17 +35,31 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
         { scope: container }
     ); 
        
-
+    
     return (
         isOdd ? (
         <div key={key} ref={container} className='w-1/2 min-h-[20vh] mt-5 self-end ' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             {!isHovered &&                 
-                <div className='w-full h-full overflow-hidden border-2 border-purpleRedux rounded-3xl'>
-                    <Image src={photo} fill={true} alt={alt}/> 
+                <div className='relative w-full min-h-[20vh] overflow-hidden border-2 border-purpleRedux rounded-3xl'>
+                    {photo ? <Image src={photo} fill={true} className="object-top rounded-3xl" objectFit="cover" alt={alt}/> 
+                    :
+                    <video
+                        width="640"
+                        height="360"
+                        controls
+                        autoPlay
+                        loop
+                        muted
+                        playsInline    
+                    >
+                        <source src="/RenoSkem_Finale.mp4" type="video/mp4" />
+                        Votre navigateur ne supporte pas cette vidéo.
+                    </video>
+                    }
                 </div>
                 }
             {isHovered && 
-            <div className='border-2 border-neonPurple rounded-3xl h-full flex flex-col justify-between'>
+            <div className='border-2 border-neonPurple rounded-3xl w-full min-h-[20vh] flex flex-col order-purpleRedux justify-between'>
                 <div className=''>
                     <p className='text-center text-yellowJs'>{title}</p>
                     <p className='text-center text-yellowJs text-xl italic'>{app}</p>
@@ -55,7 +69,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
                         { stacksDisplay }
                     </div>
                 </div>
-                <Link href="https://github.com/Martint1n" className='text-yellowJs text-center'>aller le site/github</Link>
+                <Link href={github} className='text-yellowJs text-center'>aller sur le site/github</Link>
             </div>
             }
         </div>
@@ -63,9 +77,10 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
 (
     <div ref={container} className='w-1/2 min-h-[20vh] mt-5' onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
         {!isHovered &&                 
-                <div className='w-full h-full overflow-hidden border-2 border-yellowJs rounded-3xl'>
-                    <Image src={photo} fill={true}/> 
-                </div>
+        <div className='relative w-full min-h-[20vh] overflow-hidden border-2 border-yellowJs rounded-3xl'>        
+            <Image src={photo} fill={true} className="object-top rounded-3xl" objectFit="cover" alt={alt}/>
+            
+        </div>
                 }
             {isHovered && 
             <div className='border-2 border-neonYellow rounded-3xl h-full flex flex-col justify-between'>
@@ -78,7 +93,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
                         { stacksDisplay }
                     </div>
                 </div>
-                <Link href="https://github.com/Martint1n" className='text-purpleRedux text-center'>aller le site/github</Link>
+                <Link href="https://github.com/Martint1n" className='text-purpleRedux text-center'>aller sur le site/github</Link>
             </div>
         }
         </div>

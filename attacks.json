@@ -1,0 +1,154 @@
+{
+    "joueur": {
+      "actions_disponibles": [
+        {
+          "nom": "La Capsule",
+          "texte": "Martin se remémore les enseignements en développement informatique et attaque l'ennemi",
+          "dommages": 50,
+          "limite": 33.33
+        },
+        {
+          "nom": "Paris-Saclay",
+          "texte": "Martin revit ses anciennes leçons de métallurgie, de physique des polymères et de cristallographie et assène un coup à l'énnemi",
+          "dommages": 40,
+          "limite": 33.33
+        },
+        {
+          "nom": "La Sorbonne",
+          "texte": "Martin réactive ses acquis de métrologie et défauts des matériaux et blesse l'ennemi",
+          "dommages": 30,
+          "limite": 33.33
+        },
+        {
+          "nom": "HTML",
+          "texte": "Martin lance une balise sur l'ennemi",
+          "dommages": 30,
+          "limite": 33.33
+        },
+        {
+          "nom": "CSS",
+          "texte": "Martin change l'alignement du monde",
+          "dommages": 50,
+          "limite": 33.33
+        },
+        {
+          "nom": "JS",
+          "texte": "Martin intérragie avec les éléments du DOM comme un avatar",
+          "dommages": 60,
+          "limite": 33.33
+        },
+        {
+          "nom": "React",
+          "texte": "Martin utilise la puissance du JSX et blesse l'ennemi",
+          "dommages": 70,
+          "limite": 33.33
+        },
+        {
+          "nom": "Express",
+          "texte": "Martin est distrait et pense à construire des routes",
+          "limite": 33.33
+        },
+        {
+          "nom": "Next",
+          "texte": "Martin se rend côté serveur",
+          "dommages": 40,          
+          "limite": 33.33
+        },
+        {
+          "nom": "Github",
+          "texte": "Martin commite toute son âme à son attaque",
+          "dommages": 40,
+          "limite": 33.33
+        },
+        {
+          "nom": "MongoDB",
+          "texte": "Martin récolte des données sur l'ennemi",
+          "dommages": 0,
+          "limite": 33.33
+        },
+        {
+          "nom": "React Native",
+          "texte": "Martin devient mobile et agile",
+          "limite": 33.33
+        },
+        {
+          "nom": "Tailwind",
+          "texte": "Martin change très rapidement l'alignement du monde",
+          "dommages": 40,
+          "limite": 33.33
+        },
+        {
+          "nom": "Typescript",
+          "texte": "Martin se découvre un type",
+          "dommages": 0,
+          "limite": 33.33
+        },
+        {
+          "nom": "PixiesVS",
+          "texte": "L'application mobile n'est pas terminée, cela n'a aucun effet",
+          "dommages": 0,
+          "limite": 33.33
+        },
+        {
+          "nom": "Lunétoile",
+          "texte": "Martin construit un site de précommande grâce à ses compétences",
+          "dommages": 60,
+          "limite": 33.33
+        },
+        {
+          "nom": "Tournament",
+          "texte": "Martin construit un site pour un événement instagram  et les résultats sont stockés dans une base de données",
+          "dommages": 40,
+          "limite": 33.33
+        },
+        {
+          "nom": "RenoSkem",
+          "texte": "Martin travaille en groupe pour faire une application mobile afin d'aider les particuliers lors de leurs rénovations",
+          "dommages": 50,          
+          "limite": 33.33
+        },
+        {
+          "nom": "Bughazard",
+          "texte": "Martin exploite les failles de l'adversaire",
+          "dommages": 50,          
+          "limite": 33.33
+        },
+        {
+          "nom": "Asyncslash",
+          "texte": "Martin attaque de toute part, l'ennemi ne sait pas où defendre",
+          "dommages": 70,
+          "limite": 33.33
+        },
+        {
+          "nom": "Final Commit",
+          "texte": "Martin donne un coup décisif. Cette attaque compile toutes les améliorations et optimisations sans aucune erreur en un mouvement fluide,",
+          "dommages": 100,          
+          "limite": 33.33
+        }
+      ]
+    },
+    "boss": {
+      "actions_disponibles": [
+        {
+          "nom": "Doutes",
+          "texte": "Le chevalier lance Doutes : Le chevalier doré fait douter Martin sur ses futurs choix",
+          "dommages": 2000
+        },
+        {
+          "nom": "Angoisses",
+          "texte": "Le chevalier lance Angoisses : L'aura du chevalier doré s'assombri, le coeur de Martin se serre",
+          "dommages": 1500
+        },
+        {
+          "nom": "Labyrinthe",
+          "texte": "Le chevalier lance Labyrinthe : Le chevalier doré étend son territoire, Martin se sent perdu",
+          "dommages": 1000
+        },
+        {
+          "nom": "Contretemps",
+          "texte": "Le chevalier lance Contretemps : Le chevalier doré sabote les plans de Martin",
+          "dommages": 500
+        }
+      ]
+    }
+}

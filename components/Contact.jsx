@@ -33,12 +33,12 @@ function Contact() {
     }
 
     return (
-        <form className='h-1/2 w-full flex flex-col justify-around items-center lg:h-full' onSubmit={handleSubmit}>
+        <form className='min-h-[400px] w-full flex flex-col justify-around items-center lg:h-full' onSubmit={handleSubmit}>
             <Input
                 isRequired
                 type="text"
                 label={t("contact.name")}
-                labelPlacement="outside"
+                labelPlacement="none"
                 defaultValue=""
                 name="name"
                 value={formData.name}
@@ -49,7 +49,7 @@ function Contact() {
                 isRequired
                 type="email"
                 label={t("contact.email")}
-                labelPlacement="outside"
+                labelPlacement="none"
                 defaultValue="email@email.com"
                 name="email"
                 value={formData.email}
@@ -59,14 +59,14 @@ function Contact() {
             <Textarea
                 isRequired
                 label={t("contact.message")}
-                labelPlacement="outside"
+                labelPlacement="none"
                 placeholder={t("contact.writeMessage")}
                 className="max-w-xs"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
             />
-            <input type="submit" value={t("contact.send")} className='text-yellow cursor-alias'/>
+            <input type="submit" value={t("contact.send")} className='text-yellow cursor-pointer border-2 p-2 rounded border-neonPurple'/>
         </form>
     )
 }

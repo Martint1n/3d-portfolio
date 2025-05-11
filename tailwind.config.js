@@ -32,8 +32,12 @@ module.exports = {
 		neonRed: "#ff4f6c",
 		neonYellow: "#faf200",
 		neonPurple: "#9b4dff",
+		red:'#f00'
 	},
   	extend: {
+		backgroundImage:{
+			'combat-gradient': 'linear-gradient(135deg, #0000B0 , #001A66)'
+		},
   		cursor: {
   			reticle: 'url(/target-design-svgrepo-com.svg), crosshair'
   		},
