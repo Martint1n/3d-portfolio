@@ -41,7 +41,7 @@ function EcoleCard({ key, title, diploma, photo, alt, description, movement, yea
                 <p className='text-center text-yellowJs'>{title}</p>
                 <p className='text-center text-yellowJs italic'>{year} - {diploma}</p>
                 <p className='text-center text-yellowJs italic'>{description}</p>
-                <Link href={github} className='text-yellowJs text-center'>aller sur le site</Link>
+                <Link href={github} className='text-yellowJs text-center' target='_blank'>aller sur le site</Link>
             </div>
             }
         </div>
@@ -58,7 +58,7 @@ function EcoleCard({ key, title, diploma, photo, alt, description, movement, yea
                 <p className='text-center text-purpleRedux'>{title}</p>
                 <p className='text-center text-purpleRedux italic'>{year} - {diploma}</p>
                 <p className='text-center text-purpleRedux italic'>{description}</p>
-                <Link href={github} className='text-purpleRedux text-center'>aller sur le site</Link>
+                <Link href={github} className='text-purpleRedux text-center' target='_blank'>aller sur le site</Link>
             </div>
         }
         </div>

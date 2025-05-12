@@ -166,7 +166,6 @@ return(
                     <li>image de fond - Sagr_Ragr - reddit</li>
                     <li>Chevalier doré - bukkakebandit - imgur</li>
                     <li>Roy - gamingArtBySJ - imgur</li>
-                    <li>Curseur - - </li>
                 </ul>
             </div>
         </div>
@@ -185,7 +184,7 @@ return(
                 type='audio/mpeg'
             />
         </audio>
-        <div ref={dialogueContainer} onClick={() => onClickToContinue(introState[index])} className='relative w-full h-1/4 flex justify-center items-center border-2 bg-combat-gradient'>
+        <div ref={dialogueContainer} onClick={() => onClickToContinue(introState[index])} className='relative w-full h-1/4 text-center flex justify-center items-center border-2 bg-combat-gradient'>
         {introState[index] !== '' && 
             <div onClick={() => onClickToContinue(introState[index])} className=''>
                 {introState[index]}
@@ -200,7 +199,7 @@ return(
         </div>
         }
             <div ref={knight} className='z-0 knight h-3/5 w-[125px] lg:w-[200px] relative ml-5 mb-5'>
-                <div className='w-full min-h-2 border-2 border-[#F00] bg-black'></div>
+                <div className='w-[200px] min-h-2 border-2 border-[#F00] bg-black'></div>
                 <div className={`top-0 min-h-2 bg-[#F00] absolute`} style={{ width: `${Math.max(bossHp, 0)}px` }}></div>
                     <Image src='/golden_knight.png' fill={true} className=" absolute" alt='golden knight'/>
                 </div>
@@ -244,59 +243,52 @@ return(
                     key={tab}
                     className='flex justify-around w-full h-1/3'
                 >
-                <div className='relative h-full w-1/2 overflow-visible'>
-                    {hoveredIndex === index && (
-                            <Image
-                                src="/ff7_cursor.png"
-                                alt="cursor"
-                                width={100}
-                                height={100}
-                                className=" absolute "
-                            />
-
-                    )}
-                </div>
-                <button 
-                    onClick={() => handleTabClick(tab)} 
-                    className='w-1/2 flex items-center relative'
-                    style={{ background: tab === "LIMITE" ? 'none' : 'transparent' }}
-                    onMouseEnter={() => setHoveredIndex(index)}
-                    onMouseLeave={() => setHoveredIndex(null)}
-                >
-                    <span
-                        className={ tab === "LIMITE" ?"text-transparent bg-clip-text" : ""}
-                        style={ tab === "LIMITE" ? {backgroundImage: "linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8A2BE2)"} : {}}
+                    <button 
+                        onClick={() => handleTabClick(tab)} 
+                        className='w-1/2 h-full  flex items-center justify-end'
+                        style={{ background: tab === "LIMITE" ? 'none' : 'transparent' }}
+                        onMouseEnter={() => setHoveredIndex(index)}
+                        onMouseLeave={() => setHoveredIndex(null)}
                     >
-                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                    </span>
-                </button>
-
+                        {hoveredIndex === index && (
+                                <Image
+                                    src="/ff7_cursor.png"
+                                    alt="cursor"
+                                    width={100}
+                                    height={100}
+                                />
+                        )}
+                        <span
+                            className={ tab === "LIMITE" ?"text-transparent bg-clip-text" : ""}
+                            style={ tab === "LIMITE" ? {backgroundImage: "linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8A2BE2)"} : {}}
+                        >
+                        {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                        </span>
+                    </button>
+                </div>
+                ))}
             </div>
-            ))}
-        </div>
                 {activeTab === 'education' && 
                 <div className='flex flex-col absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>
 
                         {menuEducation.map((tech, index) => (
                         <div className='flex justify-around w-full h-1/3'>
-                            <div className='relative h-full w-1/2'>
-                                {hoveredIndex === index && (
-                                    <Image
-                                        src="/ff7_cursor.png"
-                                        alt="cursor"
-                                        fill
-                                        className='object-cover'
-                                    />
-                                )}
-                            </div>
                             <button 
                                 key={index} 
                                 ref={(el) => attackRefs.current[index] = el} 
                                 onClick={() => handleAttack(index, tech)}
                                 onMouseEnter={() => setHoveredIndex(index)}
                                 onMouseLeave={() => setHoveredIndex(null)}
-                                className=' w-1/2 flex items-center'
+                                className=' w-1/2 flex items-center justify-end'
                             >
+                                {hoveredIndex === index && (
+                                    <Image
+                                        src="/ff7_cursor.png"
+                                        alt="cursor"
+                                        width={100}
+                                        height={100}
+                                    />
+                                )}
                                 {tech}
                             </button>
                         </div>
@@ -308,23 +300,22 @@ return(
                     
                             {['HTML', 'CSS', 'JS', 'React', 'Express', 'Next', 'MongoDB', 'Github', 'React Native', 'Tailwind', 'Typescript'].map((tech, index) => (
                                 <div className='flex justify-around w-full h-1/3'>
-                                    <div className='relative w-[50px] h-[25px]'>
-                                        {hoveredIndex === index && (
-                                            <Image
-                                                src="/ff7_cursor.png"
-                                                alt="cursor"
-                                                fill
-                                                className='object-cover'
-                                            />
-                                        )}
-                                    </div>
                                     <button             
                                         onMouseEnter={() => setHoveredIndex(index)}
                                         onMouseLeave={() => setHoveredIndex(null)} 
                                         key={index} 
                                         ref={(el) => attackRefs.current[index] = el} 
                                         onClick={() => handleAttack(index, tech)}
+                                        className='w-1/2 flex items-center justify-end'
                                     >
+                                    {hoveredIndex === index && (
+                                        <Image
+                                            src="/ff7_cursor.png"
+                                            alt="cursor"
+                                            width={100}
+                                            height={100}
+                                        />
+                                    )}
                                         {tech}
                                     </button>
                                 </div>
@@ -336,24 +327,22 @@ return(
 
                 {menuExperiences.map((tech, index) => (
                 <div className='flex justify-around w-full h-1/3'>
-                    <div className='relative h-full w-1/2'>
-                        {hoveredIndex === index && (
-                            <Image
-                                src="/ff7_cursor.png"
-                                alt="cursor"
-                                fill
-                                className='object-cover'
-                            />
-                        )}
-                    </div>
                     <button 
                         key={index} 
                         ref={(el) => attackRefs.current[index] = el} 
                         onClick={() => handleAttack(index, tech)}
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className=' w-1/2 flex items-center'
+                        className=' w-1/2 flex items-center justify-end'
                     >
+                        {hoveredIndex === index && (
+                            <Image
+                                src="/ff7_cursor.png"
+                                alt="cursor"
+                                width={100}
+                                height={100}
+                                />
+                        )}
                         {tech}
                     </button>
                 </div>
@@ -366,24 +355,22 @@ return(
 
                 {menuLimite.map((tech, index) => (
                 <div className='flex justify-around w-full h-1/3'>
-                    <div className='relative h-full w-1/2'>
-                        {hoveredIndex === index && (
-                            <Image
-                                src="/ff7_cursor.png"
-                                alt="cursor"
-                                fill
-                                className='object-cover'
-                            />
-                        )}
-                    </div>
                     <button 
                         key={index} 
                         ref={(el) => attackRefs.current[index] = el} 
                         onClick={() => handleAttack(index, tech)}
                         onMouseEnter={() => setHoveredIndex(index)}
                         onMouseLeave={() => setHoveredIndex(null)}
-                        className=' w-1/2 flex items-center'
+                        className=' w-1/2 flex items-center justify-end'
                     >
+                        {hoveredIndex === index && (
+                            <Image
+                                src="/ff7_cursor.png"
+                                alt="cursor"
+                                width={100}
+                                height={100}
+                                />
+                        )}
                         {tech}
                     </button>
                 </div>

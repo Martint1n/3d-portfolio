@@ -69,7 +69,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
                         { stacksDisplay }
                     </div>
                 </div>
-                <Link href={github} className='text-yellowJs text-center'>aller sur le site/github</Link>
+                <Link href={github}  className='text-yellowJs text-center' target='_blank'>aller sur le site/github</Link>
             </div>
             }
         </div>
@@ -93,7 +93,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
                         { stacksDisplay }
                     </div>
                 </div>
-                <Link href="https://github.com/Martint1n" className='text-purpleRedux text-center'>aller sur le site/github</Link>
+                <Link href="https://github.com/Martint1n"  className='text-purpleRedux text-center' target='_blank'>aller sur le site/github</Link>
             </div>
         }
         </div>
