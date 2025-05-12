@@ -23,36 +23,42 @@
           "nom": "HTML",
           "texte": "Martin lance une balise sur l'ennemi",
           "dommages": 30,
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "divAttack"
         },
         {
           "nom": "CSS",
           "texte": "Martin change l'alignement du monde",
           "dommages": 50,
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "changeAlignement"
         },
         {
           "nom": "JS",
-          "texte": "Martin intérragie avec les éléments du DOM comme un avatar",
+          "texte": "Martin déclare une variable globale",
           "dommages": 60,
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "backgroundChange"
         },
         {
           "nom": "React",
           "texte": "Martin utilise la puissance du JSX et blesse l'ennemi",
           "dommages": 70,
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "divAttack"
         },
         {
           "nom": "Express",
           "texte": "Martin est distrait et pense à construire des routes",
+          "dommages": 0,
           "limite": 33.33
         },
         {
           "nom": "Next",
           "texte": "Martin se rend côté serveur",
           "dommages": 40,          
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "serverChange"
         },
         {
           "nom": "Github",
@@ -69,18 +75,26 @@
         {
           "nom": "React Native",
           "texte": "Martin devient mobile et agile",
+          "dommages": 25,
           "limite": 33.33
         },
         {
           "nom": "Tailwind",
           "texte": "Martin change très rapidement l'alignement du monde",
           "dommages": 40,
-          "limite": 33.33
+          "limite": 33.33,
+          "effet": "changeAlignement"
         },
         {
           "nom": "Typescript",
           "texte": "Martin se découvre un type",
           "dommages": 0,
+          "limite": 33.33
+        },
+        {
+          "nom": "Vercel",
+          "texte": "",
+          "dommages": 35,
           "limite": 33.33
         },
         {
@@ -91,7 +105,7 @@
         },
         {
           "nom": "Lunétoile",
-          "texte": "Martin construit un site de précommande grâce à ses compétences",
+          "texte": "Martin construit un site de précommande avec React, mongoDB et Stripe",
           "dommages": 60,
           "limite": 33.33
         },
@@ -132,22 +146,22 @@
         {
           "nom": "Doutes",
           "texte": "Le chevalier lance Doutes : Le chevalier doré fait douter Martin sur ses futurs choix",
-          "dommages": 2000
+          "dommages": 1939
         },
         {
           "nom": "Angoisses",
           "texte": "Le chevalier lance Angoisses : L'aura du chevalier doré s'assombri, le coeur de Martin se serre",
-          "dommages": 1500
+          "dommages": 1492
         },
         {
           "nom": "Labyrinthe",
           "texte": "Le chevalier lance Labyrinthe : Le chevalier doré étend son territoire, Martin se sent perdu",
-          "dommages": 1000
+          "dommages": 1066
         },
         {
           "nom": "Contretemps",
           "texte": "Le chevalier lance Contretemps : Le chevalier doré sabote les plans de Martin",
-          "dommages": 500
+          "dommages": 511
         }
       ]
     }

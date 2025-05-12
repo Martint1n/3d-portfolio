@@ -29,6 +29,9 @@ function Battle() {
     const [bossHp, setBossHp] = useState(200)
     const [limite, setLimite] = useState(0)
     const [menu1, setMenu1] = useState(["education", "stack", "experiences"]);
+    const [alignment, setAlignment] = useState('items-end');
+    const [imageFilter, setImageFilter] = useState('')
+    const [backgroundFilter, setBackgroundFilter] = useState('')
 
     const container = useRef();
     const knight = useRef();
@@ -102,6 +105,9 @@ const handleAttack = (index, nom) => {
       return updatedIntro;
       
     });
+    if (effets[newEffect.effet]) {
+        effets[newEffect.effet]();
+      }
     if (limite < 99.99) {
        setLimite(limite + newEffect.limite)
     }
@@ -136,6 +142,33 @@ const handleAttack = (index, nom) => {
     ]);
     setActiveTab('');
   }
+
+  const effets = {
+    changeAlignement: () => {
+        if (alignment === 'items-end') {setAlignment('items-start')}
+        else {setAlignment('items-end')}
+    },
+    divAttack: () => {
+        gsap.to(dialogueContainer.current, {
+            x: knight.current.offsetLeft,
+            y: knight.current.offsetTop + 150,
+            scale:0.1,
+            transformOrigin: "left",
+            zIndex:10,
+            repeat: 1,
+            yoyo: true,
+            ease: "power2.in",
+            duration: 1,
+          });
+    },
+    serverChange: () => {
+        if (imageFilter === '') {setImageFilter('invert')}
+    },
+    backgroundChange: () => {
+        if (backgroundFilter === '') {setBackgroundFilter('grayscale')}
+    }
+    // autreEffet: () => ...
+  };
 
 
 return(
@@ -192,19 +225,20 @@ return(
         }
 
         </div>
-        <div ref={container} className='relative bg-[url(/origin_isle.webp)] bg-cover w-full h-1/2 flex items-end justify-between'>
+        <div ref={container} className={`relative bg-[url(/origin_isle.webp)] bg-cover w-full h-1/2 flex ${alignment} ${backgroundFilter} justify-between`}>
         { gameOver &&
         <div className='flex justify-center items-center w-screen h-[50px] absolute top-1/2 bg-black opacity-80 z-10 cursor-pointer' onClick={restart}>
             <p className='text-red tracking-widest font-bold'>VOUS AVEZ PERI</p>
         </div>
         }
             <div ref={knight} className='z-0 knight h-3/5 w-[125px] lg:w-[200px] relative ml-5 mb-5'>
-                <div className='w-[200px] min-h-2 border-2 border-[#F00] bg-black'></div>
+                <div className='w-[200px] min-h-2 border-2 border-[#F00] bg-black'>
+                </div>
                 <div className={`top-0 min-h-2 bg-[#F00] absolute`} style={{ width: `${Math.max(bossHp, 0)}px` }}></div>
-                    <Image src='/golden_knight.png' fill={true} className=" absolute" alt='golden knight'/>
+                    <Image src='/golden_knight.png' fill={true} alt='golden knight'/>
                 </div>
                 <div ref={roy} className='roy h-1/5 w-[75px] lg:h-2/5 lg:w-[150px] relative mr-5 mb-5 '>
-                    <Image src='/roy.png' fill={true} className="absolute" alt='golden knight'/>
+                    <Image src='/roy.png' fill={true} alt='Hero' className={`${imageFilter}`}/>
                 </div>
             </div>
         <div className='relative w-screen h-1/4 flex'>
