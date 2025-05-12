@@ -83,7 +83,7 @@ function ExperiencesCard({ key, title, app, stacks, photo, video, alt, movement,
         </div>
                 }
             {isHovered && 
-            <div className='border-2 border-neonYellow rounded-3xl h-full flex flex-col justify-between'>
+            <div className='border-2 border-neonYellow rounded-3xl w-full min-h-[20vh] flex flex-col justify-between'>
                 <div className="" >
                     <p className='text-center text-purpleRedux'>{title}</p>
                     <p className='text-center text-purpleRedux text-xl italic'>{app}</p>

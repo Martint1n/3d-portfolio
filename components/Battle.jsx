@@ -48,7 +48,7 @@ function Battle() {
         }
         if (index > 3 && index % 2 === 0 && dialogue !== "") {
             gsap.to(knight.current, {
-                x: window.innerWidth - 340,
+                x: - knight.current.getBoundingClientRect().left + roy.current.getBoundingClientRect().left,
                 repeat: 1,
                 yoyo: true,
                 ease: "power2.in",
@@ -86,7 +86,7 @@ function Battle() {
 const handleAttack = (index, nom) => {
     if (attackRefs.current[index]) {
       gsap.to(roy.current, {
-        x: -window.innerWidth + 340,
+        x: knight.current.getBoundingClientRect().left - roy.current.getBoundingClientRect().left,
         repeat: 1,
         yoyo: true,
         ease: "power2.in",
@@ -199,12 +199,12 @@ return(
             <p className='text-red tracking-widest font-bold'>VOUS AVEZ PERI</p>
         </div>
         }
-            <div ref={knight} className='z-0 knight h-3/5 w-[200px] relative ml-5 mb-5'>
+            <div ref={knight} className='z-0 knight h-3/5 w-[125px] lg:w-[200px] relative ml-5 mb-5'>
                 <div className='w-full min-h-2 border-2 border-[#F00] bg-black'></div>
                 <div className={`top-0 min-h-2 bg-[#F00] absolute`} style={{ width: `${Math.max(bossHp, 0)}px` }}></div>
                     <Image src='/golden_knight.png' fill={true} className=" absolute" alt='golden knight'/>
                 </div>
-                <div ref={roy} className='roy h-2/5 w-[150px] relative mr-5 mb-5 '>
+                <div ref={roy} className='roy h-1/5 w-[75px] lg:h-2/5 lg:w-[150px] relative mr-5 mb-5 '>
                     <Image src='/roy.png' fill={true} className="absolute" alt='golden knight'/>
                 </div>
             </div>
@@ -237,45 +237,45 @@ return(
                     </div>
                 </div>
             </div>
-            <div className='flex flex-col justify-around absolute top-2 left-40 border-2 w-1/3 h-4/5 rounded-xl bg-combat-gradient'>
-                
-                
-            {menu1.map((tab, index) => (
-            <div 
-                key={tab}
-                className='flex justify-around w-full h-1/3'
-            >
-            <div className='relative h-full w-1/2'>
-                {hoveredIndex === index && (
-                        <Image
-                            src="/ff7_cursor.png"
-                            alt="cursor"
-                            fill
-                            className='object-cover'
-                        />
 
-                )}
-            </div>
-            <button 
-                onClick={() => handleTabClick(tab)} 
-                className='w-1/2 flex items-center relative'
-                style={{ background: tab === "LIMITE" ? 'none' : 'transparent' }}
-                onMouseEnter={() => setHoveredIndex(index)}
-                onMouseLeave={() => setHoveredIndex(null)}
-            >
-                <span
-                    className={ tab === "LIMITE" ?"text-transparent bg-clip-text" : ""}
-                    style={ tab === "LIMITE" ? {backgroundImage: "linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8A2BE2)"} : {}}
+            <div className='flex flex-col justify-around absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>    
+                {menu1.map((tab, index) => (
+                <div 
+                    key={tab}
+                    className='flex justify-around w-full h-1/3'
                 >
-                {tab.charAt(0).toUpperCase() + tab.slice(1)}
-                </span>
-            </button>
+                <div className='relative h-full w-1/2 overflow-visible'>
+                    {hoveredIndex === index && (
+                            <Image
+                                src="/ff7_cursor.png"
+                                alt="cursor"
+                                width={100}
+                                height={100}
+                                className=" absolute "
+                            />
 
-        </div>
-    ))}
+                    )}
+                </div>
+                <button 
+                    onClick={() => handleTabClick(tab)} 
+                    className='w-1/2 flex items-center relative'
+                    style={{ background: tab === "LIMITE" ? 'none' : 'transparent' }}
+                    onMouseEnter={() => setHoveredIndex(index)}
+                    onMouseLeave={() => setHoveredIndex(null)}
+                >
+                    <span
+                        className={ tab === "LIMITE" ?"text-transparent bg-clip-text" : ""}
+                        style={ tab === "LIMITE" ? {backgroundImage: "linear-gradient(to right, #FF0000, #FF7F00, #FFFF00, #00FF00, #0000FF, #4B0082, #8A2BE2)"} : {}}
+                    >
+                    {tab.charAt(0).toUpperCase() + tab.slice(1)}
+                    </span>
+                </button>
+
             </div>
+            ))}
+        </div>
                 {activeTab === 'education' && 
-                <div className='flex flex-col absolute top-2 left-40 border-2 w-1/3 h-4/5 rounded-xl bg-combat-gradient'>
+                <div className='flex flex-col absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>
 
                         {menuEducation.map((tech, index) => (
                         <div className='flex justify-around w-full h-1/3'>
@@ -304,10 +304,10 @@ return(
                     
                 </div>}
                 {activeTab === 'stack' && 
-                <div className='flex flex justify-between absolute top-2 left-40 border-2 w-1/3 h-4/5 rounded-xl bg-combat-gradient'>
-                        <div className='flex flex-col '>
-                            {['HTML', 'CSS', 'JS', 'React', 'Express', 'Next'].map((tech, index) => (
-                                <div className='flex justify-start'>
+                <div className='flex flex-col overflow-y-auto absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>
+                    
+                            {['HTML', 'CSS', 'JS', 'React', 'Express', 'Next', 'MongoDB', 'Github', 'React Native', 'Tailwind', 'Typescript'].map((tech, index) => (
+                                <div className='flex justify-around w-full h-1/3'>
                                     <div className='relative w-[50px] h-[25px]'>
                                         {hoveredIndex === index && (
                                             <Image
@@ -329,37 +329,10 @@ return(
                                     </button>
                                 </div>
                             ))}
-                        </div>
-                        <div className='flex flex-col'>
-                            {['MongoDB', 'Github', 'React Native', 'Tailwind', 'Typescript'].map((tech, index) => (
-                            <div className='flex justify-start'>
-                                <div className='relative w-[50px] h-[25px]'>
-                                    {hoveredIndex === tech && (
-                                        <Image
-                                            src="/ff7_cursor.png"
-                                            alt="cursor"
-                                            fill
-                                            className='object-cover'
-                                        />
-                                    )}
-                                </div>
-                        <button 
-                            onMouseEnter={() => setHoveredIndex(tech)}
-                            onMouseLeave={() => setHoveredIndex(null)} 
-                            className='pr-2'
-                            key={index} 
-                            ref={(el) => attackRefs.current[index + 6] = el} 
-                            onClick={() => handleAttack(index + 6, tech )}
-
-                        >
-                            {tech}
-                        </button>
-                    </div>
-                    ))}
-            </div>
-        </div>}
+              
+                </div>}
                 {activeTab === 'experiences' && 
-                <div className='flex flex-col absolute top-2 left-40 border-2 w-1/3 h-4/5 rounded-xl bg-combat-gradient'>
+                <div className='flex flex-col absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>
 
                 {menuExperiences.map((tech, index) => (
                 <div className='flex justify-around w-full h-1/3'>
@@ -389,7 +362,7 @@ return(
         </div>}
 
         {activeTab === 'LIMITE' && 
-                <div className='flex flex-col absolute top-2 left-40 border-2 w-1/3 h-4/5 rounded-xl bg-combat-gradient'>
+                <div className='flex flex-col absolute top-14 lg:top-2 left-[50px] lg:left-40 border-2 w-2/3 lg:w-1/3 h-3/5 lg:h-4/5 rounded-xl bg-combat-gradient'>
 
                 {menuLimite.map((tech, index) => (
                 <div className='flex justify-around w-full h-1/3'>

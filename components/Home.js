@@ -62,7 +62,6 @@ useGSAP(() => {
       trigger: textRef.current,
       start: '10 top',
       end: '100% 80%',
-      markers: true,
       scrub: true,
     }
   })
@@ -274,14 +273,14 @@ const svgList = [
       </div>
 
       <div className='absolute top-1/3 text-center w-screen h-screen text-5xl'>
-        <span className='text-xl'>🖼️ Bienvenue dans mon <span className='text-neonOrange text-3xl'>portfolio !</span></span><br/> 
-        <span className='text-xl'>🧑 Je m'appelle <span className='text-neonOrange text-3xl'>Martin Guilbert</span></span><br/> 
-        <span className='text-yellow text-xl'>💻 Je suis <span className='text-neonOrange text-3xl'>Développeur Fullstack</span></span><br/>
-        <span className='text-yellow text-xl'>⚔️ Découvrez mon parcours dans un <span className='text-neonBlue text-3xl underline'><Link href={"/battlePage"}>combat !</Link></span></span><br/>
-        <span className='text-yellow text-xl'>⬇️ Ou simplement en </span><span className='text-neonOrange text-3xl'>scrollant ...</span>
+        <span className='text-base lg:text-xl'>🖼️ Bienvenue dans mon <span className='text-neonOrange text-xl lg:text-3xl'>portfolio !</span></span><br/> 
+        <span className='text-base lg:text-xl'>🧑 Je m'appelle <span className='text-neonOrange text-xl lg:text-3xl'>Martin Guilbert</span></span><br/> 
+        <span className='text-yellow text-base lg:text-xl'>💻 Je suis <span className='text-neonOrange text-xl lg:text-3xl'>Développeur Fullstack</span></span><br/>
+        <span className='text-yellow text-base lg:text-xl'>⚔️ Découvrez mon parcours dans un <span className='text-neonBlue text-xl lg:text-3xl underline'><Link href={"/battlePage"}>combat !</Link></span></span><br/>
+        <span className='text-yellow text-base lg:text-xl'>⬇️ Ou simplement en </span><span className='text-neonOrange text-xl lg:text-3xl'>scrollant ...</span>
       </div>
       <div className='relative flex flex-col items-center w-screen'>
-        <div className='w-2/5 border-2 rounded-xl text-center text-5xl text-neonPurple'>
+        <div className='w-2/5 border-2 rounded-xl text-center text-lg text-neonPurple lg:text-5xl'>
           STACKS
         </div>
 
@@ -292,8 +291,8 @@ const svgList = [
       </div>
 
       <div className='relative flex justify-around w-screen mt-20'>
-        <div className={`w-2/5 text-center text-5xl border-2 rounded-xl cursor-pointer ${colorExp}`} onClick={() => changeShow('experiences')}>EXPERIENCES</div>
-        <div className={`w-2/5 text-center text-5xl border-2 rounded-xl cursor-pointer ${colorEco}`} onClick={() => changeShow('ecoles')}>ECOLES</div>
+        <div className={`w-2/5 text-center text-lg border-2 rounded-xl cursor-pointer ${colorExp} lg:text-5xl`} onClick={() => changeShow('experiences')}>EXPERIENCES</div>
+        <div className={`w-2/5 text-center text-lg border-2 rounded-xl cursor-pointer ${colorEco} lg:text-5xl`} onClick={() => changeShow('ecoles')}>ECOLES</div>
       </div>
       {show === "experiences" &&
         <div className='w-[90vw] flex flex-col self-center mt-10'>
@@ -306,10 +305,10 @@ const svgList = [
         </div>
       }
       <div className='relative flex justify-center mt-20 mb-10'>
-        <a href="/cv.pdf" download="CV-Martin-Guilbert.pdf" className='text-xl'>💾 Cliquez ici pour télécharger <span className='text-neonOrange text-3xl underline'>mon CV</span></a>
+        <a href="/cv.pdf" download="CV-Martin-Guilbert.pdf" className='text-base lg:text-xl'>💾 Cliquez ici pour télécharger <span className='text-neonOrange text-xl lg:text-3xl underline'>mon CV</span></a>
       </div>
       <div className='flex justify-center mt-10 mb-10'>
-        <p className='text-xl'>📨 N'hésitez pas à m'envoyer un mail pour <span className='text-neonOrange text-3xl'>me contacter !</span></p>
+        <p className='text-center text-base lg:text-xl'>📨 N'hésitez pas à m'envoyer un mail pour <span className='text-neonOrange text-xl lg:text-3xl'>me contacter !</span></p>
       </div>
       <Contact/>
     </div>
